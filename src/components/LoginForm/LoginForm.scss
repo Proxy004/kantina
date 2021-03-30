@@ -1,0 +1,25 @@
+@import "../../styles/color.scss";
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  width: 500px;
+  padding-top: 50px;
+  padding-bottom: 100px;
+  border-radius: 20px;
+  .logo {
+    color: $Green;
+    font-size: 5rem;
+    font-weight: 700;
+    padding-bottom: 50px;
+  }
+  .loginText {
+    font-size: 1rem;
+    padding-bottom: 50px;
+    width: 80%;
+    text-align: center;
+  }
+}
