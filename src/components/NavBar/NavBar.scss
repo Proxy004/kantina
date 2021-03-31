@@ -1,0 +1,27 @@
+@import "../../styles/color.scss";
+
+.allDiv {
+}
+.menu {
+  margin-top: 1vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 5%;
+}
+
+.menuPoint {
+  color: $Green;
+  list-style: none;
+  font-size: 3rem;
+  margin-right: 2%;
+}
+.menuPoint:first-child {
+  font-size: 6rem;
+  font-weight: 900;
+  margin-right: 65%;
+}
+
+a {
+  color: $Green;
+}

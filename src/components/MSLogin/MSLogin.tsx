@@ -8,7 +8,7 @@ const MSLogin = (props: any) => {
 
   return (
     <MicrosoftLogin
-      clientId={"76b592bd-92d7-4433-9b63-b35625f35a8a"}
+      clientId={process.env.REACT_APP_CLIENT_ID || ""}
       authCallback={authHandler}
       buttonTheme={"dark"}
       forceRedirectStrategy={true}

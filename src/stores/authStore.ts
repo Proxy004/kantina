@@ -2,7 +2,7 @@ import { observable, action, makeAutoObservable } from "mobx";
 
 export class AuthStore {
   @observable user: any = undefined;
-  @observable loggedIn: boolean = false; //false
+  @observable loggedIn: boolean = true; //false
 
   @observable authorizedUploader = false;
 

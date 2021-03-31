@@ -1,0 +1,24 @@
+@import "../../styles/color.scss";
+
+.allFooter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 78vh;
+  border-top: 1px solid $Grey;
+  padding-top: 20px;
+}
+.copyK {
+  color: $Green;
+  margin-left: 40%;
+  margin-right: 30%;
+}
+
+.item {
+  color: $Green;
+}
+img {
+  margin-left: 10px;
+  height: 30px;
+}
