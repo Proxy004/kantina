@@ -19,7 +19,7 @@ const NavBar = () => {
           <FontAwesomeIcon icon={faUser} />
         </li>
         <li className="menuPoint">
-          <a href="/warenkorb">
+          <a href="/warenkorb" className="cart">
             <FontAwesomeIcon icon={faShoppingCart} />
           </a>
         </li>

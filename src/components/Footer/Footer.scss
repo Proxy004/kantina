@@ -1,13 +1,16 @@
 @import "../../styles/color.scss";
 
 .allFooter {
+  position: fixed;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 78vh;
+  left: 0px;
   border-top: 1px solid $Grey;
   padding-top: 20px;
+  width: 100%;
+  bottom: 20px;
 }
 .copyK {
   color: $Green;

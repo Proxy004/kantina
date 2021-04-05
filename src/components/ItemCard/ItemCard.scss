@@ -1,0 +1,44 @@
+@import "../../styles/color.scss";
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $White;
+  width: 15%;
+  padding-bottom: 2%;
+}
+.imageProduct {
+  width: 100%;
+  height: 30%;
+  margin-left: 0%;
+}
+.text {
+  padding-left: 10%;
+}
+.title {
+  margin-top: 5%;
+  font-size: 3rem;
+  font-weight: 600;
+}
+.price {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+.mwst {
+  color: $Grey;
+  font-size: 0.9rem;
+  margin-bottom: 20%;
+}
+.jetztKaufen {
+  color: white;
+  background-color: $Green;
+  padding: 5% 16% 5% 16%;
+  border-radius: 80px;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
