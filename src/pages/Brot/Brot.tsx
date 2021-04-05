@@ -10,15 +10,24 @@ const Brot = () => {
     <div>
       <NavBar />
       <div className="titelBrot ">Unsere hausgemachten Brote</div>
-      <div className="Salamibrot">
-        <ItemCard
-          title={"Salamibrot"}
-          price={"€ 12,99"}
-          photo={Salamibrot}
-          url={"/ProduktDetail"}
-        />
+      <div className="alleBrötle">
+        <div className="salamibrot">
+          <ItemCard
+            title={"Salamibrot"}
+            price={"€ 12,99"}
+            photo={Salamibrot}
+            url={"/ProduktDetail"}
+          />
+        </div>
+        <div className="tomaten">
+          <ItemCard
+            title={"Tomaten-Mozzarella"}
+            price={"€ 10,99"}
+            photo={Salamibrot}
+            url={"/ProduktDetail"}
+          />
+        </div>
       </div>
-
       <Footer />
     </div>
   );

@@ -8,7 +8,7 @@ const ItemCard = (props: any) => {
   return (
     <div className="card">
       <img src={props.photo} alt="Product" className="imageProduct" />
-      <div>
+      <div className="allCard">
         <div>
           <div className="title">{props.title}</div>
           <div className="price">{props.price}</div>
