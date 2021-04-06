@@ -1,5 +1,6 @@
 .salamibrot {
   margin-left: 5%;
+  margin-right: 30px;
 }
 
 .titelBrot {
@@ -8,11 +9,18 @@
   font-weight: 600;
   font-size: 2.5rem;
 }
-.tomate {
+.tomaten {
+  margin-right: 30px;
+}
+.schinkenbrot {
+  margin-right: 30px;
+}
+.käsebrot {
+  margin-right: 30px;
 }
 .alleBrötle {
   display: flex;
   flex-direction: row;
-  align-items: center;
+
   margin-top: 5%;
 }

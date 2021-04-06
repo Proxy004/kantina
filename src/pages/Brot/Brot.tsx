@@ -21,8 +21,32 @@ const Brot = () => {
         </div>
         <div className="tomaten">
           <ItemCard
-            title={"Tomaten-Mozzarella"}
+            title={"Tomaten-Mozzarella-Brot"}
             price={"€ 10,99"}
+            photo={Salamibrot}
+            url={"/ProduktDetail"}
+          />
+        </div>
+        <div className="schinkenbrot">
+          <ItemCard
+            title={"Schinkenbrot"}
+            price={"€ 12,99"}
+            photo={Salamibrot}
+            url={"/ProduktDetail"}
+          />
+        </div>
+        <div className="käsebrot">
+          <ItemCard
+            title={"Käsebrot"}
+            price={"€ 12,99"}
+            photo={Salamibrot}
+            url={"/ProduktDetail"}
+          />
+        </div>
+        <div className="gorgonzola">
+          <ItemCard
+            title={"Gorgonzolabrot"}
+            price={"€ 12,99"}
             photo={Salamibrot}
             url={"/ProduktDetail"}
           />

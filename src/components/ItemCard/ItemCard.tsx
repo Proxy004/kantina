@@ -1,16 +1,35 @@
-import { url } from "node:inspector";
-import React from "react";
+import React, { useState } from "react";
 import "./ItemCard.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import Ticker from "react-ticker";
 
 const ItemCard = (props: any) => {
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const AnimatonEnter: () => void = () => {
+    setIsHovered(true);
+  };
+  const AnimatonLeave: () => void = () => {
+    setIsHovered(false);
+  };
+
   return (
     <div className="card">
       <img src={props.photo} alt="Product" className="imageProduct" />
       <div className="allCard">
         <div>
-          <div className="title">{props.title}</div>
+          {isHovered ? (
+            <div className="title" onMouseLeave={() => AnimatonLeave()}>
+              <Ticker speed={4} mode={"await"} move={isHovered}>
+                {() => <>{props.title}</>}
+              </Ticker>
+            </div>
+          ) : (
+            <div className="title" onMouseEnter={() => AnimatonEnter()}>
+              {props.title}
+            </div>
+          )}
+
           <div className="price">{props.price}</div>
           <div className="mwst">inkl. MwSt</div>
         </div>
