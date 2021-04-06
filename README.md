@@ -1,5 +1,5 @@
 # Kantina
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Kantina is a canteen ordering system which was made for the HAK Bregenz Café. The frontend was made with React.
 
 
