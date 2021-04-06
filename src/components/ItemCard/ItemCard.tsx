@@ -6,6 +6,7 @@ import Ticker from "react-ticker";
 
 const ItemCard = (props: any) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
+
   const AnimatonEnter: () => void = () => {
     setIsHovered(true);
   };

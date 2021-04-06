@@ -6,13 +6,15 @@ import {
   faUser,
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
+import { menuStore } from "../../stores/menuStore";
+import { inject, observer } from "mobx-react";
 
 const NavBar = () => {
   return (
     <div className="allDiv">
       <ul className="menu">
         <div className="menuPoint">Kantina</div>
-        <li className="menuPoint">
+        <li className="menuPoint" onClick={() => menuStore.setLogin()}>
           <FontAwesomeIcon icon={faHamburger} />
         </li>
         <li className="menuPoint">
@@ -28,4 +30,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default inject("menuStore")(observer(NavBar));

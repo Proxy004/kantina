@@ -6,9 +6,11 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider as StoreProvider } from "mobx-react";
 
 import { authStore } from "./stores/authStore";
+import { menuStore } from "./stores/menuStore";
 
 const stores = {
   authStore,
+  menuStore,
 };
 
 require("dotenv").config();
