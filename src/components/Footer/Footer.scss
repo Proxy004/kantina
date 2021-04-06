@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   left: 0px;
   border-top: 1px solid $Grey;
   padding-top: 20px;
@@ -14,8 +14,7 @@
 }
 .copyK {
   color: $Green;
-  margin-left: 40%;
-  margin-right: 30%;
+  margin: 0px 15% 0px 15%;
 }
 
 .item {

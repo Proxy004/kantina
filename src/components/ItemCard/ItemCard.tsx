@@ -19,17 +19,24 @@ const ItemCard = (props: any) => {
       <div className="allCard">
         <div>
           {isHovered ? (
-            <div className="title" onMouseLeave={() => AnimatonLeave()}>
+            <a
+              className="title"
+              onMouseLeave={() => AnimatonLeave()}
+              href="./produktdetail"
+            >
               <Ticker speed={4} mode={"await"} move={isHovered}>
                 {() => <>{props.title}</>}
               </Ticker>
-            </div>
+            </a>
           ) : (
-            <div className="title" onMouseEnter={() => AnimatonEnter()}>
+            <a
+              className="title"
+              onMouseEnter={() => AnimatonEnter()}
+              href="./produktdetail"
+            >
               {props.title}
-            </div>
+            </a>
           )}
-
           <div className="price">{props.price}</div>
           <div className="mwst">inkl. MwSt</div>
         </div>

@@ -51,6 +51,14 @@ const Brot = () => {
             url={"/ProduktDetail"}
           />
         </div>
+        <div className="laugen">
+          <ItemCard
+            title={"Laugen"}
+            price={"€ 12,99"}
+            photo={Salamibrot}
+            url={"/ProduktDetail"}
+          />
+        </div>
       </div>
       <Footer />
     </div>
