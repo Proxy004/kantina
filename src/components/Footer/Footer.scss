@@ -10,7 +10,10 @@
   border-top: 1px solid $Grey;
   padding-top: 20px;
   width: 100%;
-  bottom: 20px;
+  bottom: 0px;
+  padding-bottom: 20px;
+  z-index: 2;
+  background-color: white;
 }
 .copyK {
   color: $Green;

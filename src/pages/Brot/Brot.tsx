@@ -7,61 +7,63 @@ import "./Brot.scss";
 
 const Brot = () => {
   return (
-    <div>
+    <>
       <NavBar />
-      <div className="titelBrot ">Unsere hausgemachten Brote</div>
-      <div className="alleBrötle">
-        <div className="salamibrot">
-          <ItemCard
-            title={"Salamibrot"}
-            price={"€ 12,99"}
-            photo={Salamibrot}
-            url={"/ProduktDetail"}
-          />
+      <div className="everything">
+        <div className="titelBrot ">Unsere hausgemachten Brote</div>
+        <div className="alleBrötle">
+          <div className="salamibrot">
+            <ItemCard
+              title={"Salamibrot"}
+              price={"€ 12,99"}
+              photo={Salamibrot}
+              url={"/ProduktDetail"}
+            />
+          </div>
+          <div className="tomaten">
+            <ItemCard
+              title={"Tomaten-Mozzarella-Brot"}
+              price={"€ 10,99"}
+              photo={Salamibrot}
+              url={"/ProduktDetail"}
+            />
+          </div>
+          <div className="schinkenbrot">
+            <ItemCard
+              title={"Schinkenbrot"}
+              price={"€ 12,99"}
+              photo={Salamibrot}
+              url={"/ProduktDetail"}
+            />
+          </div>
+          <div className="käsebrot">
+            <ItemCard
+              title={"Käsebrot"}
+              price={"€ 12,99"}
+              photo={Salamibrot}
+              url={"/ProduktDetail"}
+            />
+          </div>
+          <div className="gorgonzola">
+            <ItemCard
+              title={"Gorgonzolabrot"}
+              price={"€ 12,99"}
+              photo={Salamibrot}
+              url={"/ProduktDetail"}
+            />
+          </div>
+          <div className="laugen">
+            <ItemCard
+              title={"Laugen"}
+              price={"€ 12,99"}
+              photo={Salamibrot}
+              url={"/ProduktDetail"}
+            />
+          </div>
         </div>
-        <div className="tomaten">
-          <ItemCard
-            title={"Tomaten-Mozzarella-Brot"}
-            price={"€ 10,99"}
-            photo={Salamibrot}
-            url={"/ProduktDetail"}
-          />
-        </div>
-        <div className="schinkenbrot">
-          <ItemCard
-            title={"Schinkenbrot"}
-            price={"€ 12,99"}
-            photo={Salamibrot}
-            url={"/ProduktDetail"}
-          />
-        </div>
-        <div className="käsebrot">
-          <ItemCard
-            title={"Käsebrot"}
-            price={"€ 12,99"}
-            photo={Salamibrot}
-            url={"/ProduktDetail"}
-          />
-        </div>
-        <div className="gorgonzola">
-          <ItemCard
-            title={"Gorgonzolabrot"}
-            price={"€ 12,99"}
-            photo={Salamibrot}
-            url={"/ProduktDetail"}
-          />
-        </div>
-        <div className="laugen">
-          <ItemCard
-            title={"Laugen"}
-            price={"€ 12,99"}
-            photo={Salamibrot}
-            url={"/ProduktDetail"}
-          />
-        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </>
   );
 };
 

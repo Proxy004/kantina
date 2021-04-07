@@ -5,23 +5,33 @@ const Menu = () => {
   return (
     <div className="allCat">
       <ul className="list">
-        <li className="list-item">
-          <a className="nav-links" href="/brote">
+        <li className="listItem">
+          <a className="navLinks" href="/brote">
             Brote
           </a>
-          <a className="nav-links" href="/herzhaftes">
+        </li>
+        <li className="listItem">
+          <a className="navLinks" href="/herzhaftes">
             Herzhaftes
           </a>
-          <a className="nav-links" href="/vegan">
+        </li>
+        <li className="listItem">
+          <a className="navLinks" href="/vegan">
             Vegan
           </a>
-          <a className="nav-links" href="/süßes">
+        </li>
+        <li className="listItem">
+          <a className="navLinks" href="/süßes">
             Süßes
           </a>
-          <a className="nav-links" href="/getränke">
+        </li>
+        <li className="listItem">
+          <a className="navLinks" href="/getränke">
             Getränke
           </a>
-          <a className="nav-links" href="/snacks">
+        </li>
+        <li className="listItem">
+          <a className="navLinks" href="/snacks">
             Snacks
           </a>
         </li>
