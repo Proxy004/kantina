@@ -1,6 +1,5 @@
 import React from "react";
 import MicrosoftLogin from "react-microsoft-login";
-import Login from "../../pages/Login/Login";
 const loginEnv = process.env.REACT_APP_MICROSOFT_ID;
 
 const MSLogin = (props: any) => {
