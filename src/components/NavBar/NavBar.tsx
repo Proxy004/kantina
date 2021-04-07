@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import "./NavBar.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,20 +9,8 @@ import {
 import { menuStore } from "../../stores/menuStore";
 import { inject, observer } from "mobx-react";
 import Menu from "../Menu/Menu";
-import { gsap } from "gsap";
 
 const NavBar = () => {
-  const boxRef = useRef<HTMLDivElement>(null);
-  /* useEffect(() => {
-    gsap.fromTo(
-      boxRef.current,
-      {
-        x: "-110vw",
-      },
-      { x: "0px", duration: 1 }
-    );
-  }); */
-
   return (
     <>
       <div className="allDiv">
@@ -44,7 +32,6 @@ const NavBar = () => {
           className={`menuOpen ${
             menuStore.menuActive ? "menuOpenTrue" : "menuOpenFalse"
           } `}
-          ref={boxRef}
         >
           <Menu />
         </div>
