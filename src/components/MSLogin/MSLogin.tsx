@@ -11,7 +11,7 @@ const MSLogin = (props: any) => {
       authCallback={authHandler}
       buttonTheme={"dark"}
       forceRedirectStrategy={true}
-      redirectUri={"/brot"}
+      redirectUri={"http://localhost:3000/login"}
       debug={true}
     />
   );
