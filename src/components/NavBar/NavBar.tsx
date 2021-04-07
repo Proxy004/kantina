@@ -13,7 +13,7 @@ import { gsap } from "gsap";
 
 const NavBar = () => {
   const boxRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
+  /* useEffect(() => {
     gsap.fromTo(
       boxRef.current,
       {
@@ -21,48 +21,34 @@ const NavBar = () => {
       },
       { x: "0px", duration: 1 }
     );
-  });
+  }); */
 
   return (
     <>
-      {menuStore.menuActive ? (
-        <div className="allDiv">
-          <ul className="menu">
-            <div className="menuPoint">Kantina</div>
-            <li className="menuPoint" onClick={() => menuStore.setLogin()}>
-              <FontAwesomeIcon icon={faHamburger} />
-            </li>
-            <li className="menuPoint">
-              <FontAwesomeIcon icon={faUser} />
-            </li>
-            <li className="menuPoint">
-              <a href="/warenkorb" className="cart">
-                <FontAwesomeIcon icon={faShoppingCart} />
-              </a>
-            </li>
-          </ul>
-          <div className="menuOpen" ref={boxRef}>
-            <Menu />
-          </div>
+      <div className="allDiv">
+        <ul className="menu">
+          <div className="menuPoint">Kantina</div>
+          <li className="menuPoint" onClick={() => menuStore.setLogin()}>
+            <FontAwesomeIcon icon={faHamburger} />
+          </li>
+          <li className="menuPoint">
+            <FontAwesomeIcon icon={faUser} />
+          </li>
+          <li className="menuPoint">
+            <a href="/warenkorb" className="cart">
+              <FontAwesomeIcon icon={faShoppingCart} />
+            </a>
+          </li>
+        </ul>
+        <div
+          className={`menuOpen ${
+            menuStore.menuActive ? "menuOpenTrue" : "menuOpenFalse"
+          } `}
+          ref={boxRef}
+        >
+          <Menu />
         </div>
-      ) : (
-        <div className="allDiv">
-          <ul className="menu">
-            <div className="menuPoint">Kantina</div>
-            <li className="menuPoint" onClick={() => menuStore.setLogin()}>
-              <FontAwesomeIcon icon={faHamburger} />
-            </li>
-            <li className="menuPoint">
-              <FontAwesomeIcon icon={faUser} />
-            </li>
-            <li className="menuPoint">
-              <a href="/warenkorb" className="cart">
-                <FontAwesomeIcon icon={faShoppingCart} />
-              </a>
-            </li>
-          </ul>
-        </div>
-      )}
+      </div>
     </>
   );
 };
