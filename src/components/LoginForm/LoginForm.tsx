@@ -1,6 +1,8 @@
 import React from "react";
-import MSLogin from "../MSLogin/MSLogin";
 import "./LoginForm.scss";
+import { authStore } from "../../stores/authStore";
+import { inject, observer } from "mobx-react";
+import { loginRequest } from "../../services/MsalConfig";
 
 const LoginForm = () => {
   return (
@@ -10,9 +12,11 @@ const LoginForm = () => {
         Logge dich mit deinem Microsoft Account ein. Bitte benutze den
         Schulaccount.
       </div>
-      <MSLogin />
+      <div onClick={() => authStore.login(loginRequest)} className="mcButton">
+        Microsoft
+      </div>
     </div>
   );
 };
 
-export default LoginForm;
+export default inject("authStore")(observer(LoginForm));

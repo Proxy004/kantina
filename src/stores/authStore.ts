@@ -1,6 +1,6 @@
 import { observable, action, makeAutoObservable } from "mobx";
 //import { User } from "../models/User"; für user post
-import { auth } from "../services/MsalConfig";
+import { msalConfig } from "../services/MsalConfig";
 import * as Msal from "@azure/msal-browser";
 
 export class AuthStore {
@@ -13,10 +13,14 @@ export class AuthStore {
     this.user = user;
   };
 
-  @observable publicClient: any = Msal.PublicClientApplication;
-
-  @action setClient: (client: any) => void = (client: any) => {
-    this.publicClient = client;
+  @observable
+  publicClient: Msal.PublicClientApplication = new Msal.PublicClientApplication(
+    msalConfig
+  );
+  @action setClientId: (clientId: Msal.PublicClientApplication) => void = (
+    clientId: Msal.PublicClientApplication
+  ) => {
+    this.publicClient = clientId;
   };
 
   @observable loggedIn: boolean = false; //false
@@ -34,48 +38,39 @@ export class AuthStore {
     this.setLoggedIn(false);
   };
 
-  @action login(
-    myMsal: Msal.PublicClientApplication,
-    request: Msal.PopupRequest
-  ) {
+  @action login(request: Msal.PopupRequest) {
     (async () => {
       try {
-        this.idToken = await myMsal.loginPopup(request);
+        this.idToken = await this.publicClient.loginPopup(request);
         const loggedInAccountName = this.idToken.idTokenClaims
           .preferred_username;
         request.account =
-          myMsal.getAccountByUsername(loggedInAccountName) || undefined;
+          this.publicClient.getAccountByUsername(loggedInAccountName) ||
+          undefined;
       } catch (err) {
-        console.log(err);
+        console.log(err + " login");
       }
     })();
   }
 
-  @action getAccessToken(
-    myMsal: Msal.PublicClientApplication,
-    request: Msal.SilentRequest
-  ) {
+  @action getAccessToken(request: Msal.SilentRequest) {
     (async () => {
       let tokenResponse: Msal.AuthenticationResult;
       try {
-        tokenResponse = await myMsal.acquireTokenSilent(request);
+        tokenResponse = await this.publicClient.acquireTokenSilent(request);
         this.accessToken = tokenResponse.accessToken;
       } catch (err) {
         console.log(err);
         //PopUp anfordern
         if (this.requiresInteraction(err))
           try {
-            tokenResponse = await myMsal.acquireTokenPopup(request);
+            tokenResponse = await this.publicClient.acquireTokenPopup(request);
             this.accessToken = tokenResponse.accessToken;
           } catch (err) {
-            console.log(err);
+            console.log(err + " accestoken");
           }
       }
     })();
-  }
-  initialize() {
-    const myMsal = new Msal.PublicClientApplication(auth);
-    authStore.setClient(myMsal);
   }
   requiresInteraction(errorCode: any) {
     if (!errorCode || !errorCode.length) {
