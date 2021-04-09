@@ -2,7 +2,7 @@ import { observable, action, makeAutoObservable } from "mobx";
 
 export class MenuStore {
   @observable menuActive: boolean = false;
-  @action setLogin = () => {
+  @action setMenu = () => {
     this.menuActive = !this.menuActive;
   };
   constructor() {
