@@ -20,17 +20,23 @@ const ItemCard = (props: any) => {
       <div className="allCard">
         <div>
           {isHovered ? (
-            <a onMouseLeave={() => AnimatonLeave()}>
-              <Link to={`/produktdetail/:productid`} className="title">
-                <Ticker speed={4} mode={"await"} move={isHovered}>
-                  {() => <>{props.title}</>}
-                </Ticker>
-              </Link>
-            </a>
+            <Link
+              to={`/produktdetail/:productid`}
+              onMouseLeave={() => AnimatonLeave()}
+              className="title"
+            >
+              <Ticker speed={4} mode={"await"} move={isHovered}>
+                {() => <>{props.title}</>}
+              </Ticker>
+            </Link>
           ) : (
             <>
-              <Link to={"/produktdetail/:productid"} className="title">
-                <a onMouseEnter={() => AnimatonEnter()}>{props.title}</a>
+              <Link
+                to={"/produktdetail/:productid"}
+                onMouseEnter={() => AnimatonEnter()}
+                className="title"
+              >
+                {props.title}
               </Link>
             </>
           )}
@@ -38,7 +44,7 @@ const ItemCard = (props: any) => {
           <div className="mwst">inkl. MwSt</div>
         </div>
         <div>
-          <a className="jetztKaufen">
+          <a className="jetztKaufen" href="/#">
             <FontAwesomeIcon icon={faShoppingCart} />
             <span className="text">Jetzt kaufen</span>
           </a>

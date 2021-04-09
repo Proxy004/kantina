@@ -26,11 +26,9 @@ const NavBar = () => {
             <FontAwesomeIcon icon={faUser} />
           </li>
           <li className="menuPoint">
-            <a>
-              <Link to={`/warenkorb`} className="cart">
-                <FontAwesomeIcon icon={faShoppingCart} />
-              </Link>
-            </a>
+            <Link to={`/warenkorb`} className="cart">
+              <FontAwesomeIcon icon={faShoppingCart} />
+            </Link>
           </li>
         </ul>
         <div
