@@ -9,22 +9,27 @@ import {
 import { menuStore } from "../../stores/menuStore";
 import { inject, observer } from "mobx-react";
 import Menu from "../Menu/Menu";
-
+import { authStore } from "../../stores/authStore";
+import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <>
       <div className="allDiv">
         <ul className="menu">
-          <div className="menuPoint">Kantina</div>
-          <li className="menuPoint" onClick={() => menuStore.setLogin()}>
+          <Link to={"/brot"} className="menuPoint">
+            <div>Kantina</div>
+          </Link>
+          <li className="menuPoint" onClick={() => menuStore.setMenu()}>
             <FontAwesomeIcon icon={faHamburger} />
           </li>
-          <li className="menuPoint">
+          <li className="menuPoint" onClick={() => authStore.logout()}>
             <FontAwesomeIcon icon={faUser} />
           </li>
           <li className="menuPoint">
-            <a href="/warenkorb" className="cart">
-              <FontAwesomeIcon icon={faShoppingCart} />
+            <a>
+              <Link to={`/warenkorb`} className="cart">
+                <FontAwesomeIcon icon={faShoppingCart} />
+              </Link>
             </a>
           </li>
         </ul>
@@ -40,4 +45,4 @@ const NavBar = () => {
   );
 };
 
-export default inject("menuStore")(observer(NavBar));
+export default inject("menuStore", "authStore")(observer(NavBar));

@@ -8,7 +8,7 @@
   margin-left: 90px;
 }
 .menuOpen {
-  transition: all 2s linear;
+  transition: all 1s linear;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,6 +29,8 @@
   list-style: none;
   font-size: 3rem;
   margin-right: 2%;
+  cursor: pointer;
+  text-decoration: none;
 }
 .menuPoint:first-child {
   font-size: 6rem;

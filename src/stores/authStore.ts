@@ -1,16 +1,17 @@
 import { observable, action, makeAutoObservable } from "mobx";
-//import { User } from "../models/User"; für user post
+import { User } from "../models/User";
 import { msalConfig } from "../services/MsalConfig";
 import * as Msal from "@azure/msal-browser";
+import axios from "axios";
 
 export class AuthStore {
-  @observable accessToken: any = undefined;
+  private accessToken: any = undefined;
 
-  @observable idToken: any = undefined;
+  private idToken: any = undefined;
 
-  @observable user: any = undefined;
-  @action setUser: (user: any) => void = (user: any) => {
-    this.user = user;
+  user: User = {
+    name: "",
+    mail: "",
   };
 
   @observable
@@ -23,30 +24,38 @@ export class AuthStore {
     this.publicClient = clientId;
   };
 
-  @observable loggedIn: boolean = false; //false
-
-  @action setLoggedIn: (value: any) => void = (value: any) => {
-    this.loggedIn = value;
-  };
-
-  @action setlogin = (value: boolean) => {
+  @observable loggedIn: boolean = false;
+  @action setLogIn: (value: boolean) => void = (value: boolean) => {
     this.loggedIn = value;
   };
 
   @action logout = () => {
-    this.publicClient.logoutPopup();
-    this.setLoggedIn(false);
+    this.setLogIn(false);
+    localStorage.clear();
   };
 
   @action login(request: Msal.PopupRequest) {
     (async () => {
       try {
+        //getfrommicrosoft
         this.idToken = await this.publicClient.loginPopup(request);
         const loggedInAccountName = this.idToken.idTokenClaims
           .preferred_username;
         request.account =
           this.publicClient.getAccountByUsername(loggedInAccountName) ||
           undefined;
+        this.setLogIn(true);
+        //sendtodatabase
+        /*
+        await axios.post(
+          `${`${process.env.REACT_APP_API_URL}/user/login` || ""}`,
+          {
+            name: this.idToken.idTokenClaims.name,
+            mail: loggedInAccountName,
+          },
+          { headers: { "Content-Type": "application/json" } }
+        );
+        */
       } catch (err) {
         console.log(err + " login");
       }
@@ -72,6 +81,30 @@ export class AuthStore {
       }
     })();
   }
+  /*
+  @action getInfos(request: Msal.SilentRequest) {
+    (async () => {
+      this.getAccessToken(request);
+      const headers = {
+        Accept: "application/json",
+        Authorization: "Bearer " + this.accessToken,
+      };
+      const graphUrl = "https://graph.microsoft.com/v1.0/me/memberOf";
+      const response = await fetch(graphUrl, {
+        method: "GET",
+        headers: headers,
+      });
+      const responseData = await response.json();
+      let groups = responseData.value.map((groupData: any) => {
+        return {
+          name: groupData.displayName ? groupData.displayName : groupData.id,
+        };
+      });
+
+      return groups;
+    })();
+  }
+*/
   requiresInteraction(errorCode: any) {
     if (!errorCode || !errorCode.length) {
       return false;
