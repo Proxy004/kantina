@@ -1,39 +1,40 @@
 import React from "react";
 import "./Menu.scss";
+import { Link } from "react-router-dom";
 
 const Menu = () => {
   return (
     <div className="allCat">
       <ul className="list">
         <li className="listItem">
-          <a className="navLinks" href="/brote">
+          <Link className="navLinks" to={"/brot"}>
             Brote
-          </a>
+          </Link>
         </li>
         <li className="listItem">
-          <a className="navLinks" href="/herzhaftes">
+          <Link className="navLinks" to={"/herzhaftes"}>
             Herzhaftes
-          </a>
+          </Link>
         </li>
         <li className="listItem">
-          <a className="navLinks" href="/vegan">
+          <Link className="navLinks" to={"/vegan"}>
             Vegan
-          </a>
+          </Link>
         </li>
         <li className="listItem">
-          <a className="navLinks" href="/süßes">
+          <Link className="navLinks" to={"/süßes"}>
             Süßes
-          </a>
+          </Link>
         </li>
         <li className="listItem">
-          <a className="navLinks" href="/getränke">
+          <Link className="navLinks" to={"/getränke"}>
             Getränke
-          </a>
+          </Link>
         </li>
         <li className="listItem">
-          <a className="navLinks" href="/snacks">
+          <Link className="navLinks" to={"/snacks"}>
             Snacks
-          </a>
+          </Link>
         </li>
       </ul>
     </div>
