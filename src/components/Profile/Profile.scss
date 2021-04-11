@@ -1,0 +1,10 @@
+@import "../../styles/color.scss";
+.logOut {
+  color: $Green;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: 2px solid $Green;
+  padding: 5px 10px 5px 10px;
+  border-radius: 50px;
+  cursor: pointer;
+}

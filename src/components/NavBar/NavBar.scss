@@ -13,7 +13,7 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  height: 84vh;
+  height: 75vh;
   width: 100vw;
   background-color: white;
 }
@@ -23,7 +23,23 @@
 .menuOpenFalse {
   left: -110vw;
 }
-
+.profileActive {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.2s ease-in;
+  right: 5.5vw;
+  position: absolute;
+  margin: -20px;
+}
+.profileActiveFalse {
+  opacity: 0;
+  top: 110px;
+}
+.profileActiveTrue {
+  top: 120px;
+  opacity: 1;
+}
 .menuPoint {
   color: $Green;
   list-style: none;
@@ -37,16 +53,11 @@
   font-weight: 900;
   margin-right: auto;
 }
-
-.cart {
+.arrowUp {
+  font-size: 2rem;
   color: $Green;
 }
 
-@keyframes swingViewport {
-  from {
-    transform: translateX(-1000px);
-  }
-  to {
-    transform: translateX(100);
-  }
+.cart {
+  color: $Green;
 }

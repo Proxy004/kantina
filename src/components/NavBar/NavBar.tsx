@@ -5,12 +5,14 @@ import {
   faHamburger,
   faUser,
   faShoppingCart,
+  faArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { menuStore } from "../../stores/menuStore";
 import { inject, observer } from "mobx-react";
 import Menu from "../Menu/Menu";
-import { authStore } from "../../stores/authStore";
+import Profile from "../Profile/Profile";
 import { Link } from "react-router-dom";
+
 const NavBar = () => {
   return (
     <>
@@ -22,7 +24,7 @@ const NavBar = () => {
           <li className="menuPoint" onClick={() => menuStore.setMenu()}>
             <FontAwesomeIcon icon={faHamburger} />
           </li>
-          <li className="menuPoint" onClick={() => authStore.logout()}>
+          <li className="menuPoint" onClick={() => menuStore.setProfile()}>
             <FontAwesomeIcon icon={faUser} />
           </li>
           <li className="menuPoint">
@@ -37,6 +39,16 @@ const NavBar = () => {
           } `}
         >
           <Menu />
+        </div>
+        <div
+          className={`profileActive ${
+            menuStore.profileActive ? "profileActiveFalse" : "profileActiveTrue"
+          } `}
+        >
+          <div className="arrowUp">
+            <FontAwesomeIcon icon={faArrowUp} />
+          </div>
+          <Profile />
         </div>
       </div>
     </>
