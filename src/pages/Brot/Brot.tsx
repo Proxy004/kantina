@@ -12,53 +12,39 @@ const Brot = () => {
       <div className="everything">
         <div className="titelBrot ">Unsere hausgemachten Brote</div>
         <div className="alleBrötle">
-          <div className="salamibrot">
+          <div className="item1">
             <ItemCard
               title={"Salamibrot"}
               price={"€ 12,99"}
               photo={Salamibrot}
-              url={"/ProduktDetail"}
             />
           </div>
-          <div className="tomaten">
+          <div className="item2">
             <ItemCard
               title={"Tomaten-Mozzarella-Brot"}
               price={"€ 10,99"}
               photo={Salamibrot}
-              url={"/ProduktDetail"}
             />
           </div>
-          <div className="schinkenbrot">
+          <div className="item3">
             <ItemCard
               title={"Schinkenbrot"}
               price={"€ 12,99"}
               photo={Salamibrot}
-              url={"/ProduktDetail"}
             />
           </div>
-          <div className="käsebrot">
-            <ItemCard
-              title={"Käsebrot"}
-              price={"€ 12,99"}
-              photo={Salamibrot}
-              url={"/ProduktDetail"}
-            />
+          <div className="item4">
+            <ItemCard title={"Käsebrot"} price={"€ 12,99"} photo={Salamibrot} />
           </div>
-          <div className="gorgonzola">
+          <div className="item5">
             <ItemCard
               title={"Gorgonzolabrot"}
               price={"€ 12,99"}
               photo={Salamibrot}
-              url={"/ProduktDetail"}
             />
           </div>
-          <div className="laugen">
-            <ItemCard
-              title={"Laugen"}
-              price={"€ 12,99"}
-              photo={Salamibrot}
-              url={"/ProduktDetail"}
-            />
+          <div className="item6">
+            <ItemCard title={"Laugen"} price={"€ 12,99"} photo={Salamibrot} />
           </div>
         </div>
         <Footer />

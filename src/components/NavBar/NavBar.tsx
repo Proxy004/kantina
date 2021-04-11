@@ -42,7 +42,7 @@ const NavBar = () => {
         </div>
         <div
           className={`profileActive ${
-            menuStore.profileActive ? "profileActiveFalse" : "profileActiveTrue"
+            menuStore.profileActive ? "profileActiveTrue" : "profileActiveFalse"
           } `}
         >
           <div className="arrowUp">

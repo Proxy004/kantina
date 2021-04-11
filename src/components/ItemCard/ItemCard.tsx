@@ -44,10 +44,10 @@ const ItemCard = (props: any) => {
           <div className="mwst">inkl. MwSt</div>
         </div>
         <div>
-          <a className="jetztKaufen" href="/#">
+          <Link className="jetztKaufen">
             <FontAwesomeIcon icon={faShoppingCart} />
             <span className="text">Jetzt kaufen</span>
-          </a>
+          </Link>
         </div>
       </div>
     </div>
