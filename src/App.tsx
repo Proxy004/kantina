@@ -40,7 +40,6 @@ interface AppProps {
 }
 
 const App = ({ authStore }: AppProps) => {
-  console.log(authStore?.loggedIn);
   return (
     <div className="App">
       <Router>
