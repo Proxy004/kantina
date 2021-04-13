@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
-import { useRouteMatch } from "react-router-dom";
 import { Product } from "../../models/Product";
 import axios from "axios";
 
@@ -41,7 +40,7 @@ const ProduktÜbersicht: React.FC<ProduktÜbersichtProps> = ({
       }
     };
     getUserInfo();
-  }, []);
+  }, [setProduct, match]);
 
   return (
     <>

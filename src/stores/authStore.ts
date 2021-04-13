@@ -1,8 +1,7 @@
 import { observable, action, makeAutoObservable } from "mobx";
-import { User } from "../models/User";
 import { msalConfig } from "../services/MsalConfig";
 import * as Msal from "@azure/msal-browser";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 
 export class AuthStore {
   private accessToken: any = undefined;
@@ -39,8 +38,7 @@ export class AuthStore {
           this.publicClient.getAccountByUsername(loggedInAccountName) ||
           undefined;
         this.setLogIn(true);
-        //sendtodatabase
-        /*
+
         await axios.post(
           `${`${process.env.REACT_APP_API_URL}/user/login` || ""}`,
           {
@@ -49,31 +47,8 @@ export class AuthStore {
           },
           { headers: { "Content-Type": "application/json" } }
         );
-        */
       } catch (err) {
         console.log(err + " login");
-      }
-    })();
-  }
-
-  @action getItems(props: any) {
-    (async () => {
-      try {
-        const {
-          match: { params },
-        } = props;
-        await axios
-          .get(
-            `${
-              `${process.env.REACT_APP_API_URL}/product/${props.urlDescription}` ||
-              ""
-            }`
-          )
-          .then((response) => {
-            return response.data;
-          });
-      } catch (err) {
-        console.log(err + " Itemss");
       }
     })();
   }
