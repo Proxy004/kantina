@@ -21,7 +21,7 @@ const ItemCard = (props: any) => {
         <div>
           {isHovered ? (
             <Link
-              to={`/produktdetail/:productid`}
+              to={`/produktdetail/${props.link}`}
               onMouseLeave={() => AnimatonLeave()}
               className="title"
             >
@@ -32,7 +32,7 @@ const ItemCard = (props: any) => {
           ) : (
             <>
               <Link
-                to={"/produktdetail/:productid"}
+                to={`/produktdetail/${props.link}`}
                 onMouseEnter={() => AnimatonEnter()}
                 className="title"
               >

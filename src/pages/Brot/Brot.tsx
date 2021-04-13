@@ -17,6 +17,7 @@ const Brot = () => {
               title={"Salamibrot"}
               price={"€ 12,99"}
               photo={Salamibrot}
+              link={"salamibrot"}
             />
           </div>
           <div className="item2">
@@ -24,6 +25,7 @@ const Brot = () => {
               title={"Tomaten-Mozzarella-Brot"}
               price={"€ 10,99"}
               photo={Salamibrot}
+              link={"tomaten_mozzarella_brot"}
             />
           </div>
           <div className="item3">
@@ -31,20 +33,32 @@ const Brot = () => {
               title={"Schinkenbrot"}
               price={"€ 12,99"}
               photo={Salamibrot}
+              link={"schinkenbrot"}
             />
           </div>
           <div className="item4">
-            <ItemCard title={"Käsebrot"} price={"€ 12,99"} photo={Salamibrot} />
+            <ItemCard
+              title={"Käsebrot"}
+              price={"€ 12,99"}
+              photo={Salamibrot}
+              link={"käsebrot"}
+            />
           </div>
           <div className="item5">
             <ItemCard
               title={"Gorgonzolabrot"}
               price={"€ 12,99"}
               photo={Salamibrot}
+              link={"gorgonzolabrot"}
             />
           </div>
           <div className="item6">
-            <ItemCard title={"Laugen"} price={"€ 12,99"} photo={Salamibrot} />
+            <ItemCard
+              title={"Laugen"}
+              price={"€ 12,99"}
+              photo={Salamibrot}
+              link={"laugen"}
+            />
           </div>
         </div>
         <Footer />

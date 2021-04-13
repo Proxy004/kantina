@@ -92,7 +92,7 @@ const App = ({ authStore }: AppProps) => {
           ></Route>
           <Route
             exact
-            path="/produktdetail/:productid"
+            path="/produktdetail/:productUrl"
             component={
               authStore?.loggedIn
                 ? () => <pages.produktdetail></pages.produktdetail>

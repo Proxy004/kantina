@@ -16,6 +16,7 @@ const HerzhafteSpeisen = () => {
               title={"Schnitzelsemmel"}
               price={"€ 13,99"}
               photo={Salamibrot}
+              link={"schnitzelsemmel"}
             />
           </div>
           <div className="item2">
@@ -23,6 +24,7 @@ const HerzhafteSpeisen = () => {
               title={"Wälderwrap"}
               price={"€ 4,99"}
               photo={Salamibrot}
+              link={"wäderwrap"}
             />
           </div>
           <div className="item3">
@@ -30,6 +32,7 @@ const HerzhafteSpeisen = () => {
               title={"Schnitzelbrot"}
               price={"€ 30,99"}
               photo={Salamibrot}
+              link={"schnitzelbrot"}
             />
           </div>
           <div className="item4">
@@ -37,6 +40,7 @@ const HerzhafteSpeisen = () => {
               title={"Crisp-Chicken Burger"}
               price={"€ 2,99"}
               photo={Salamibrot}
+              link={"crispy_chicken_burger"}
             />
           </div>
           <div className="item5">
@@ -44,6 +48,7 @@ const HerzhafteSpeisen = () => {
               title={"Salamiwrap"}
               price={"€ 5,99"}
               photo={Salamibrot}
+              link={"salamiwrap"}
             />
           </div>
           <div className="item6">
@@ -51,6 +56,7 @@ const HerzhafteSpeisen = () => {
               title={"Gemüse-Schinkenwrap"}
               price={"€ 7,99"}
               photo={Salamibrot}
+              link={"gemüse_schinken_wrap"}
             />
           </div>
         </div>

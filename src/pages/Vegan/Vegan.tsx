@@ -16,6 +16,7 @@ const Vegan = () => {
               title={"Gemüsereis"}
               price={"€ 12,99"}
               photo={Salamibrot}
+              link={"gemüsereis"}
             />
           </div>
           <div className="item2">
@@ -23,6 +24,7 @@ const Vegan = () => {
               title={"Tomatenbrot"}
               price={"€ 10,99"}
               photo={Salamibrot}
+              link={"tomatenbrot"}
             />
           </div>
           <div className="item3">
@@ -30,6 +32,7 @@ const Vegan = () => {
               title={"Vegan-Schnitzel"}
               price={"€ 12,99"}
               photo={Salamibrot}
+              link={"vegan_schnitzel"}
             />
           </div>
           <div className="item4">
@@ -37,6 +40,7 @@ const Vegan = () => {
               title={"Vegan-Burger"}
               price={"€ 12,99"}
               photo={Salamibrot}
+              link={"vegan_burger"}
             />
           </div>
           <div className="item5">
@@ -44,6 +48,7 @@ const Vegan = () => {
               title={"Gemischter Salat"}
               price={"€ 12,99"}
               photo={Salamibrot}
+              link={"gemischter_salat"}
             />
           </div>
           <div className="item6">
@@ -51,6 +56,7 @@ const Vegan = () => {
               title={"Gemüsebowl"}
               price={"€ 12,99"}
               photo={Salamibrot}
+              link={"gemüsebowl"}
             />
           </div>
         </div>

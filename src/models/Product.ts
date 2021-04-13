@@ -1,8 +1,9 @@
 export type Product = {
-  id: string;
-  name: string;
-  img: any;
-  preis: number;
+  bezeichnung: string;
   beschreibung: string;
+  inhaltsstoffe: string;
   allergene: string;
+  urlPfad: string;
+  bildPfad: string;
+  preis: number;
 };

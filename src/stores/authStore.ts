@@ -3,12 +3,11 @@ import { User } from "../models/User";
 import { msalConfig } from "../services/MsalConfig";
 import * as Msal from "@azure/msal-browser";
 import axios, { AxiosResponse } from "axios";
-import { Product } from "../models/Product";
 
 export class AuthStore {
   private accessToken: any = undefined;
   private idToken: any = undefined;
-  @observable
+
   @observable
   publicClient: Msal.PublicClientApplication = new Msal.PublicClientApplication(
     msalConfig
