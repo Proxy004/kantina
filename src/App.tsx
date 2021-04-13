@@ -93,9 +93,9 @@ const App = ({ authStore }: AppProps) => {
           <Route
             exact
             path="/produktdetail/:productUrl"
-            component={
+            render={
               authStore?.loggedIn
-                ? () => <pages.produktdetail></pages.produktdetail>
+                ? (props: any) => <pages.produktdetail {...props} />
                 : () => <Redirect to="/login"></Redirect>
             }
           ></Route>
