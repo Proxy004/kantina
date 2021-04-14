@@ -1,7 +1,7 @@
 import React from "react";
 
 const Warenkorb = () => {
-  return <div>sdfsd</div>;
+  return <div>sdfsdds</div>;
 };
 
 export default Warenkorb;
