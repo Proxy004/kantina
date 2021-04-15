@@ -28,7 +28,7 @@
   flex-direction: column;
   align-items: center;
   transition: all 0.2s ease-in;
-  right: 5.5vw;
+  right: 5.7vw;
   position: absolute;
   margin: -20px;
 }
@@ -52,6 +52,9 @@
   font-size: 6rem;
   font-weight: 900;
   margin-right: auto;
+}
+.menuPoint:last-child {
+  margin-right: 5vw;
 }
 .arrowUp {
   font-size: 2rem;

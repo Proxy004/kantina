@@ -21,7 +21,10 @@ export class AuthStore {
   @action setLogIn: (value: boolean) => void = (value: boolean) => {
     this.loggedIn = value;
   };
-
+  @action logoutAccount = () => {
+    this.publicClient.logoutPopup();
+    this.setLogIn(false);
+  };
   @action logout = () => {
     this.setLogIn(false);
     localStorage.clear();
