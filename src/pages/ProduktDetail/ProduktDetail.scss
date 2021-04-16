@@ -3,21 +3,24 @@
 .productView {
   display: flex;
   flex-direction: row;
-  width: 20vw;
-  margin-top: 10%;
+  width: 100vw;
+  margin-top: 5%;
+  max-width: 1920px;
 }
 .productPicture {
   width: 600px;
   height: 400px;
   margin-right: 20%;
   margin-left: 5%;
+  margin-top: 80px;
 }
 .productAllergenes {
+  margin-bottom: 50px;
   color: $Green;
-  font-weight: 2rem;
+  font-size: 1.4rem;
 }
 .productTitle {
-  font-size: 4rem;
+  font-size: 5rem;
   font-weight: 600;
 }
 .productTextBot {
@@ -28,11 +31,13 @@
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  padding-right: 25px;
+  padding-right: 185px;
   border-right: 2px solid $Grey;
+  width: 50px;
 }
 .productDescription {
-  padding-left: 25px;
+  width: 50px;
+  padding-left: 50px;
 }
 .productText {
   display: flex;
@@ -41,4 +46,43 @@
 }
 .productIngredientsTitle {
   font-weight: 600;
+}
+.productPrice {
+  font-size: 3rem;
+  font-weight: 700;
+}
+.productRowData {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.productMwst {
+  color: $Grey;
+}
+.productPriceAll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.productBuy {
+  display: flex;
+  padding: 5px 30px 5px 30px;
+  border-radius: 500px;
+  align-items: center;
+  background-color: $Green;
+  color: white;
+  margin-left: 50px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+.productShoppingIcon {
+  padding-right: 15px;
+  font-size: 2.3rem;
+}
+.productMore {
+  margin-top: 40px;
+}
+.productThis {
+  color: $Green;
 }

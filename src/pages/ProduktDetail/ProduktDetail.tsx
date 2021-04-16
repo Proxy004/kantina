@@ -4,7 +4,9 @@ import Footer from "../../components/Footer/Footer";
 import { Product } from "../../models/Product";
 import axios from "axios";
 import "./ProduktDetail.scss";
-import { constants } from "node:buffer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 interface ProduktÜbersichtProps {
   match?: any;
@@ -15,14 +17,14 @@ const ProduktÜbersicht: React.FC<ProduktÜbersichtProps> = ({
   match,
 }: ProduktÜbersichtProps) => {
   const [product, setProduct] = useState<Product>({
-    bezeichnung: "Salamibrot",
+    bezeichnung: "Schinkenbrot",
     beschreibung:
       "Ssdfasdasdfasdf asdfasdf asdfasdfasdf asdfasdfasd fasdfasdf ",
     inhaltsstoffe: "maresdfasdfasd sadfasdfasdfa sdfasd fasdfsdf asdfsdfsd ",
     urlPfad: "",
     bildPfad: "schinkenbrot.png",
-    preis: 0,
-    allergene: "A,C,E",
+    preis: 6.99,
+    allergene: "A,C,E *",
   });
 
   useEffect(() => {
@@ -68,14 +70,24 @@ const ProduktÜbersicht: React.FC<ProduktÜbersichtProps> = ({
             </div>
           </div>
           <div className="productRowData">
-            <div className="productPrice">{product.preis}</div>
-            <div className="productMwst">inkl. MwSt</div>
-            <div className="productBuy">Jetzt kaufen</div>
+            <div className="productPriceAll">
+              <div className="productPrice">€ {product.preis}</div>
+              <div className="productMwst">inkl. MwSt</div>
+            </div>
+            <div className="productBuy">
+              <div className="productShoppingIcon">
+                <FontAwesomeIcon icon={faShoppingCart} />
+              </div>
+              Jetzt kaufen
+            </div>
           </div>
 
           <div className="productMore">
             *Für mehr Informationen zu Allergenen in unseren Produkten klicken
-            Sie <span className="productThis">hier</span>.
+            Sie{" "}
+            <Link>
+              <span className="productThis">hier</span>.
+            </Link>
           </div>
         </div>
       </div>
