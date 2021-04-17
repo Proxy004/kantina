@@ -1,5 +1,5 @@
 import React from "react";
-import "./Profile.scss";
+import "./Profil.scss";
 import { authStore } from "../../stores/authStore";
 import { menuStore } from "../../stores/menuStore";
 import { inject, observer } from "mobx-react";

@@ -2,7 +2,8 @@ import React from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import ItemCard from "../../components/ItemCard/ItemCard";
-import Salamibrot from "../../assets/salamibrot.jpg";
+import { Produkt } from "../../models/Produkt";
+import { productStore } from "../../stores/productStore";
 
 const Vegan = () => {
   return (
@@ -11,54 +12,19 @@ const Vegan = () => {
       <div className="everything">
         <div className="titelBrot ">Unsere Getränke</div>
         <div className="alleBrötle">
-          <div className="item1">
-            <ItemCard
-              title={"Mineralwasser"}
-              price={"€ 12,99"}
-              photo={Salamibrot}
-              link={"mineralwasser"}
-            />
-          </div>
-          <div className="item2">
-            <ItemCard
-              title={"Eistee Pfirsich"}
-              price={"€ 10,99"}
-              photo={Salamibrot}
-              link={"eistee_pfirsich"}
-            />
-          </div>
-          <div className="item3">
-            <ItemCard
-              title={"Eistee Zitrone"}
-              price={"€ 12,99"}
-              photo={Salamibrot}
-              link={"eistee_zitrone"}
-            />
-          </div>
-          <div className="item4">
-            <ItemCard
-              title={"Apfelsaft"}
-              price={"€ 12,99"}
-              photo={Salamibrot}
-              link={"apfelsaft"}
-            />
-          </div>
-          <div className="item5">
-            <ItemCard
-              title={"Johannisbeersaft"}
-              price={"€ 12,99"}
-              photo={Salamibrot}
-              link={"johannisbeersaft"}
-            />
-          </div>
-          <div className="item6">
-            <ItemCard
-              title={"Holundersaft"}
-              price={"€ 12,99"}
-              photo={Salamibrot}
-              link={"holundersaft"}
-            />
-          </div>
+          {productStore.product
+            .filter((products) => products.kategorie.includes("Getränke"))
+            .map((filteredProduct: Produkt, i: number) => () => {
+              if (i > 0) {
+                <div className="item1">
+                  <ItemCard product={filteredProduct} />
+                </div>;
+              } else {
+                <div className="item0">
+                  <ItemCard product={filteredProduct} />
+                </div>;
+              }
+            })}
         </div>
         <Footer />
       </div>

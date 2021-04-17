@@ -7,7 +7,6 @@ import {
   Redirect,
 } from "react-router-dom";
 import { inject, observer } from "mobx-react";
-//import firebase from "firebase";
 
 //pages
 import Brot from "./pages/Brot/Brot";
@@ -22,6 +21,7 @@ import Warenkorb from "./pages/Warenkorb/Warenkorb";
 
 //store
 import { AuthStore } from "./stores/authStore";
+import { productStore } from "./stores/productStore";
 
 const pages = {
   brot: Brot,
@@ -40,6 +40,7 @@ interface AppProps {
 }
 
 const App = ({ authStore }: AppProps) => {
+  productStore.getAllProducts();
   return (
     <div className="App">
       <Router>
@@ -151,4 +152,4 @@ const App = ({ authStore }: AppProps) => {
   );
 };
 
-export default inject("authStore")(observer(App));
+export default inject("authStore", "productStore")(observer(App));

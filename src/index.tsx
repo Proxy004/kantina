@@ -7,10 +7,14 @@ import { Provider as StoreProvider } from "mobx-react";
 
 import { authStore } from "./stores/authStore";
 import { menuStore } from "./stores/menuStore";
+import { checkoutStore } from "./stores/checkoutStore";
+import { productStore } from "./stores/productStore";
 
 const stores = {
   authStore,
   menuStore,
+  checkoutStore,
+  productStore,
 };
 
 require("dotenv").config();

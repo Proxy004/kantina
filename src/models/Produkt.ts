@@ -1,4 +1,4 @@
-export type Product = {
+export type Produkt = {
   bezeichnung: string;
   beschreibung: string;
   inhaltsstoffe: string;
@@ -6,4 +6,5 @@ export type Product = {
   urlPfad: string;
   bildPfad: string;
   preis: number;
+  kategorie: string;
 };
