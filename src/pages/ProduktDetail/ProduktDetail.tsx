@@ -7,6 +7,8 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { Produkt } from "../../models/Produkt";
 import { productStore } from "../../stores/productStore";
+import { checkoutStore } from "../../stores/checkoutStore";
+import { inject, observer } from "mobx-react";
 
 interface ProduktÜbersichtProps {
   match?: any;
@@ -28,15 +30,11 @@ const ProduktÜbersicht: React.FC<ProduktÜbersichtProps> = ({
   });
 
   useEffect(() => {
-    {
-      productStore.product
-        .filter((products) =>
-          products.urlPfad.includes(match.params.productUrl)
-        )
-        .map((filteredProduct: Produkt) => () => {
-          setProductDetailInfos(filteredProduct);
-        });
-    }
+    productStore.product
+      .filter((products) => products.urlPfad.includes(match.params.productUrl))
+      .map((filteredProduct: Produkt) => () => {
+        setProductDetailInfos(filteredProduct);
+      });
   });
 
   return (
@@ -68,7 +66,10 @@ const ProduktÜbersicht: React.FC<ProduktÜbersichtProps> = ({
               <div className="productPrice">€ {productDetailInfos.preis}</div>
               <div className="productMwst">inkl. MwSt</div>
             </div>
-            <div className="productBuy">
+            <div
+              className="productBuy"
+              onClick={() => checkoutStore.addProduct(productDetailInfos)}
+            >
               <div className="productShoppingIcon">
                 <FontAwesomeIcon icon={faShoppingCart} />
               </div>
@@ -90,4 +91,4 @@ const ProduktÜbersicht: React.FC<ProduktÜbersichtProps> = ({
   );
 };
 
-export default ProduktÜbersicht;
+export default inject("checkoutStore")(observer(ProduktÜbersicht));

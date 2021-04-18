@@ -5,6 +5,8 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import Ticker from "react-ticker";
 import { Link } from "react-router-dom";
 import { Produkt } from "../../models/Produkt";
+import { checkoutStore } from "../../stores/checkoutStore";
+import { inject, observer } from "mobx-react";
 
 const ItemCard = (props: { product: Produkt }) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
@@ -49,15 +51,16 @@ const ItemCard = (props: { product: Produkt }) => {
           <div className="price">{props.product.preis}</div>
           <div className="mwst">inkl. MwSt</div>
         </div>
-        <div>
-          <Link className="jetztKaufen">
-            <FontAwesomeIcon icon={faShoppingCart} />
-            <span className="text">Jetzt kaufen</span>
-          </Link>
+        <div
+          className="jetztKaufen"
+          onClick={() => checkoutStore.addProduct(props.product)}
+        >
+          <FontAwesomeIcon icon={faShoppingCart} />
+          <span className="text">Jetzt kaufen</span>
         </div>
       </div>
     </div>
   );
 };
 
-export default ItemCard;
+export default inject("checkoutStore")(observer(ItemCard));
