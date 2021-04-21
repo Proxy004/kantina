@@ -1,10 +1,11 @@
 export type Produkt = {
+  produkt_id: number;
   bezeichnung: string;
   beschreibung: string;
+  preis: number;
   inhaltsstoffe: string;
   allergene: string;
-  urlPfad: string;
   bildPfad: string;
-  preis: number;
+  urlPfad: string;
   kategorie: string;
 };

@@ -9,6 +9,7 @@ import { Produkt } from "../../models/Produkt";
 import { productStore } from "../../stores/productStore";
 import { checkoutStore } from "../../stores/checkoutStore";
 import { inject, observer } from "mobx-react";
+import { toJS } from "mobx";
 
 interface ProduktÜbersichtProps {
   match?: any;
@@ -19,32 +20,34 @@ const ProduktÜbersicht: React.FC<ProduktÜbersichtProps> = ({
   match,
 }: ProduktÜbersichtProps) => {
   const [productDetailInfos, setProductDetailInfos] = useState<Produkt>({
+    produkt_id: 0,
     bezeichnung: "",
     beschreibung: "",
     inhaltsstoffe: "",
     urlPfad: "",
-    bildPfad: "",
+    bildPfad: "salamibrot.jpg",
     preis: 0,
     allergene: "",
     kategorie: "",
   });
 
   useEffect(() => {
-    productStore.product
-      .filter((products) => products.urlPfad.includes(match.params.productUrl))
-      .map((filteredProduct: Produkt) => () => {
+    toJS(productStore.product).filter((filteredProduct: Produkt) => {
+      if (filteredProduct.urlPfad === match.params.productUrl) {
         setProductDetailInfos(filteredProduct);
-      });
-  });
+      }
+    });
+  }, [setProductDetailInfos, match.params.productUrl]);
 
   return (
     <>
       <NavBar />
+
       <div className="productView">
         <img
           src={require(`../../assets/${productDetailInfos.bildPfad}`).default}
-          alt={"product"}
-          className={"productPicture"}
+          alt="product"
+          className="productPicture"
         />
         <div className="productText">
           <div className="productTitle">{productDetailInfos.bezeichnung}</div>
@@ -80,7 +83,7 @@ const ProduktÜbersicht: React.FC<ProduktÜbersichtProps> = ({
           <div className="productMore">
             *Für mehr Informationen zu Allergenen in unseren Produkten klicken
             Sie{" "}
-            <Link>
+            <Link to>
               <span className="productThis">hier</span>.
             </Link>
           </div>

@@ -21,7 +21,6 @@ import Warenkorb from "./pages/Warenkorb/Warenkorb";
 
 //store
 import { AuthStore } from "./stores/authStore";
-import { productStore } from "./stores/productStore";
 
 const pages = {
   brot: Brot,
@@ -40,7 +39,6 @@ interface AppProps {
 }
 
 const App = ({ authStore }: AppProps) => {
-  productStore.getAllProducts();
   return (
     <div className="App">
       <Router>

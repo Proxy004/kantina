@@ -10,7 +10,6 @@ import { inject, observer } from "mobx-react";
 
 const ItemCard = (props: { product: Produkt }) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
-
   const AnimatonEnter: () => void = () => {
     setIsHovered(true);
   };
@@ -21,7 +20,7 @@ const ItemCard = (props: { product: Produkt }) => {
   return (
     <div className="card">
       <img
-        src={props.product.bildPfad}
+        src={require(`../../assets/${props.product.bildPfad}`).default}
         alt="Product"
         className="imageProduct"
       />
@@ -48,7 +47,7 @@ const ItemCard = (props: { product: Produkt }) => {
               </Link>
             </>
           )}
-          <div className="price">{props.product.preis}</div>
+          <div className="price">€ {props.product.preis}</div>
           <div className="mwst">inkl. MwSt</div>
         </div>
         <div

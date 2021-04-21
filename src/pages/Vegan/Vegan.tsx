@@ -4,6 +4,7 @@ import Footer from "../../components/Footer/Footer";
 import ItemCard from "../../components/ItemCard/ItemCard";
 import { productStore } from "../../stores/productStore";
 import { Produkt } from "../../models/Produkt";
+import { toJS } from "mobx";
 
 const Vegan = () => {
   return (
@@ -12,17 +13,21 @@ const Vegan = () => {
       <div className="everything">
         <div className="titelBrot ">Unsere veganen Speisen</div>
         <div className="alleBrötle">
-          {productStore.product
-            .filter((products) => products.kategorie.includes("Vegan"))
-            .map((filteredProduct: Produkt, i: number) => () => {
+          {toJS(productStore.product)
+            .filter((products) => products.kategorie.includes("Snacks"))
+            .map((filteredProduct: Produkt, i: number) => {
               if (i > 0) {
-                <div className="item1">
-                  <ItemCard product={filteredProduct} />
-                </div>;
+                return (
+                  <div className="item1">
+                    <ItemCard product={filteredProduct} />
+                  </div>
+                );
               } else {
-                <div className="item0">
-                  <ItemCard product={filteredProduct} />
-                </div>;
+                return (
+                  <div className="item0">
+                    <ItemCard product={filteredProduct} />
+                  </div>
+                );
               }
             })}
         </div>
