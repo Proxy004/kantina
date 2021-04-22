@@ -4,12 +4,12 @@ import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { Produkt } from "../../models/Produkt";
 import { checkoutStore } from "../../stores/checkoutStore";
 import "./Warenkorb.scss";
 import { toJS } from "mobx";
 
 const Warenkorb = () => {
+  let sum: number = 0;
   const [sumProducts, setSumProducts] = useState(0);
   const [siteWarenkorbLength, setSiteWarenkorbLength] = useState(
     Math.ceil(checkoutStore.checkoutProducts.length / 5)
@@ -19,8 +19,9 @@ const Warenkorb = () => {
   useEffect(() => {
     //sumProducts
     toJS(checkoutStore.checkoutProducts).forEach((Product) => {
-      setSumProducts(sumProducts + Product.preis);
+      sum += Product.preis;
     });
+
     //WarenkorbSite
     if (siteWarenkorbLength === 0) {
       setSiteWarenkorbLength(1);
@@ -31,7 +32,8 @@ const Warenkorb = () => {
     } else {
       setButtonRightDisabled(true);
     }
-  }, [setSiteWarenkorbLength, siteWarenkorbLength]);
+    setSumProducts(sum);
+  }, [setSiteWarenkorbLength, setSumProducts, siteWarenkorbLength]);
 
   return (
     <>
@@ -39,9 +41,11 @@ const Warenkorb = () => {
       <div className="titleWarenkorb">Warenkorb</div>
       <div className="itemsWarenkorb">
         <div className="itemWarenkorb">
-          {/*checkoutStore.checkoutProducts
-            .filter((products) => products.kategorie.includes("Brot"))
-          .map((filteredProduct: Produkt, i: number) => () => {})*/}
+          {toJS(checkoutStore.checkoutProducts).map(
+            (filteredProduct: Produkt, i: number) => {
+              <div></div>;
+            }
+          )}
         </div>
         <div className="buttonLeftWarenkorb">
           <FontAwesomeIcon icon={faArrowLeft} />
