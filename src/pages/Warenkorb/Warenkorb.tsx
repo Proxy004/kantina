@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { checkoutStore } from "../../stores/checkoutStore";
+import { CheckoutProduct } from "../../models/CheckoutProducts";
 import "./Warenkorb.scss";
 import { toJS } from "mobx";
 
 const Warenkorb = () => {
-  let sum: number = 0;
   const [sumProducts, setSumProducts] = useState(0);
   const [siteWarenkorbLength, setSiteWarenkorbLength] = useState(
     Math.ceil(checkoutStore.checkoutProducts.length / 5)
@@ -17,6 +17,7 @@ const Warenkorb = () => {
   const [buttonRightDisabled, setButtonRightDisabled] = useState(true);
 
   useEffect(() => {
+    let sum: number = 0;
     //sumProducts
     toJS(checkoutStore.checkoutProducts).forEach((Product) => {
       sum += Product.preis;
@@ -42,8 +43,20 @@ const Warenkorb = () => {
       <div className="itemsWarenkorb">
         <div className="itemWarenkorb">
           {toJS(checkoutStore.checkoutProducts).map(
-            (filteredProduct: Produkt, i: number) => {
-              <div></div>;
+            (filteredProduct: CheckoutProduct, i: number) => {
+              if (filteredProduct.quantity > 1) {
+                return (
+                  <div className="item1" key={i}>
+                    {filteredProduct.bezeichnung + filteredProduct.quantity}
+                  </div>
+                );
+              } else {
+                return (
+                  <div className="item0" key={i}>
+                    {filteredProduct.bezeichnung}
+                  </div>
+                );
+              }
             }
           )}
         </div>

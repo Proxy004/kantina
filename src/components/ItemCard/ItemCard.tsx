@@ -32,7 +32,7 @@ const ItemCard = (props: { product: Produkt }) => {
               onMouseLeave={() => AnimatonLeave()}
               className="title"
             >
-              <Ticker speed={4} mode={"await"} move={isHovered}>
+              <Ticker speed={9} mode={"await"} move={isHovered}>
                 {() => <>{props.product.bezeichnung}</>}
               </Ticker>
             </Link>

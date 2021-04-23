@@ -3,6 +3,7 @@
 .productView {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   width: 100vw;
   margin-top: 5%;
   max-width: 1920px;
@@ -10,7 +11,7 @@
 .productPicture {
   width: 600px;
   height: 400px;
-  margin-right: 15%;
+
   margin-left: 5%;
   margin-top: 80px;
 }

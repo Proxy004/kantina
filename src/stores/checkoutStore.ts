@@ -1,35 +1,46 @@
 import { observable, action, makeAutoObservable } from "mobx";
 import { Produkt } from "../models/Produkt";
-import { Quantity } from "../models/Quantity";
+import { CheckoutProduct } from "../models/CheckoutProducts";
 
 export class CheckoutStore {
-  private quantityItem: Quantity = {
-    bezeichnung: "",
-    quantity: 0,
-  };
-  @observable checkoutProducts: Produkt[] = [];
-  @observable quantity: Quantity[] = [];
+  @observable checkoutProducts: CheckoutProduct[] = [];
   private zähler = 0;
-
+  private checkProduct: CheckoutProduct = {
+    produkt_id: 1,
+    bezeichnung: "",
+    preis: 0,
+    bildPfad: "",
+    urlPfad: "",
+    quantity: 1,
+  };
   @action addProduct = (products: Produkt) => {
     if (this.checkoutProducts.length >= 1) {
-      this.checkoutProducts.forEach((product) => {
-        if (products.bezeichnung === product.bezeichnung) {
+      this.checkoutProducts.forEach((element, i) => {
+        if (element.produkt_id === products.produkt_id) {
+          this.removeProduct(i);
           this.zähler++;
-          this.quantityItem.bezeichnung = product.bezeichnung;
-          this.quantityItem.quantity = this.zähler;
-          this.quantity.push(this.quantityItem);
-          this.checkoutProducts.push(products);
-          console.log(1);
-        } else {
-          this.checkoutProducts.push(products);
-          console.log(2);
+          this.checkProduct = {
+            produkt_id: products.produkt_id,
+            bezeichnung: products.bezeichnung,
+            preis: products.preis,
+            bildPfad: products.bildPfad,
+            urlPfad: products.urlPfad,
+            quantity: this.zähler,
+          };
         }
       });
     } else {
-      this.checkoutProducts.push(products);
-      console.log(3);
+      this.checkProduct = {
+        produkt_id: products.produkt_id,
+        bezeichnung: products.bezeichnung,
+        preis: products.preis,
+        bildPfad: products.bildPfad,
+        urlPfad: products.urlPfad,
+        quantity: 1,
+      };
     }
+
+    this.checkoutProducts.push(this.checkProduct);
   };
   @action removeProduct = (index: number) => {
     try {
