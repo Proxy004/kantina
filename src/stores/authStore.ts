@@ -35,23 +35,27 @@ export class AuthStore {
       try {
         //getfrommicrosoft
         this.idToken = await this.publicClient.loginPopup(request);
-        const loggedInAccountName = this.idToken.idTokenClaims
+        const loggedInAccountName: string = this.idToken.idTokenClaims
           .preferred_username;
         request.account =
           this.publicClient.getAccountByUsername(loggedInAccountName) ||
           undefined;
-        this.setLogIn(true);
-
-        await axios.post(
-          `${`${process.env.REACT_APP_API_URL}/user/login` || ""}`,
-          {
-            name: this.idToken.idTokenClaims.name,
-            mail: loggedInAccountName,
-          },
-          { headers: { "Content-Type": "application/json" } }
-        );
+        const splittedMail = loggedInAccountName.split("@");
+        if (splittedMail[1] === "hak-bregenz.at") {
+          this.setLogIn(true);
+          await axios.post(
+            `${`${process.env.REACT_APP_API_URL}/user/login` || ""}`,
+            {
+              name: this.idToken.idTokenClaims.name,
+              mail: loggedInAccountName,
+            },
+            { headers: { "Content-Type": "application/json" } }
+          );
+        } else {
+          throw new Error("Jesus Christ use your HAK Mail!");
+        }
       } catch (err) {
-        console.log(err + " login");
+        console.log(err);
       }
     })();
   }

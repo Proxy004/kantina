@@ -10,7 +10,7 @@ import {
 import { menuStore } from "../../stores/menuStore";
 import { inject, observer } from "mobx-react";
 import Menu from "../Menu/Menu";
-import Profile from "../Profile/Profile";
+import Profile from "../Profile/Profil";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {

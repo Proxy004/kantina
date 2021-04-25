@@ -7,7 +7,6 @@ import {
   Redirect,
 } from "react-router-dom";
 import { inject, observer } from "mobx-react";
-//import firebase from "firebase";
 
 //pages
 import Brot from "./pages/Brot/Brot";
@@ -151,4 +150,4 @@ const App = ({ authStore }: AppProps) => {
   );
 };
 
-export default inject("authStore")(observer(App));
+export default inject("authStore", "productStore")(observer(App));
