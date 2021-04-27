@@ -20,7 +20,7 @@ const Warenkorb = () => {
     let sum: number = 0;
     //sumProducts
     toJS(checkoutStore.checkoutProducts).forEach((Product) => {
-      sum += Product.preis;
+      sum += Product.preis * Product.quantity;
     });
 
     //WarenkorbSite
@@ -39,48 +39,49 @@ const Warenkorb = () => {
   return (
     <>
       <NavBar />
-      <div className="titleWarenkorb">Warenkorb</div>
-      <div className="itemsWarenkorb">
-        <div className="itemWarenkorb">
-          {toJS(checkoutStore.checkoutProducts).map(
-            (filteredProduct: CheckoutProduct, i: number) => {
-              if (filteredProduct.quantity > 1) {
+      <div className="allWarenkorb">
+        <div className="titleWarenkorb">Warenkorb</div>
+        <div className="itemsWarenkorb">
+          <div className="itemWarenkorb">
+            {toJS(checkoutStore.checkoutProducts).map(
+              (filteredProduct: CheckoutProduct, i: number) => {
+                console.log(filteredProduct);
                 return (
-                  <div className="item1" key={i}>
-                    {filteredProduct.bezeichnung + filteredProduct.quantity}
-                  </div>
-                );
-              } else {
-                return (
-                  <div className="item0" key={i}>
-                    {filteredProduct.bezeichnung}
+                  <div key={i}>
+                    <div className="item1">
+                      {filteredProduct.bezeichnung}
+                      <div className="quantityWarenkorb">
+                        {filteredProduct.quantity}
+                      </div>
+                      € {filteredProduct.preis * filteredProduct.quantity}
+                    </div>
                   </div>
                 );
               }
-            }
-          )}
+            )}
+          </div>
+          <div className="buttonLeftWarenkorb">
+            <FontAwesomeIcon icon={faArrowLeft} />
+          </div>
+          <div className="siteWarenkorb">Seite 1/{siteWarenkorbLength}</div>
+          <div className="buttonRightWarenkorb">
+            <FontAwesomeIcon icon={faArrowRight} />
+          </div>
         </div>
-        <div className="buttonLeftWarenkorb">
-          <FontAwesomeIcon icon={faArrowLeft} />
+        <div className="rightSideWarenkorb">
+          <div className="sumWarenkorb">
+            <div className="titleSumWarenkorb">Summe:</div>€ {sumProducts}
+          </div>
+          <div className="pickUpTimeWarenkorb">{/*Picker */}</div>
+          <div className="agbWarenkorb">
+            {/*Checkbox */} Ich habe die AGB gelesen und akzeptiere diese.
+          </div>
+          <div className="orderWarenkorb">
+            <Link>{/*axios push */} kostenpflichtig Bestellen</Link>
+          </div>
         </div>
-        <div className="siteWarenkorb">Seite 1/{siteWarenkorbLength}</div>
-        <div className="buttonRightWarenkorb">
-          <FontAwesomeIcon icon={faArrowRight} />
-        </div>
+        <Footer />
       </div>
-      <div className="rightSideWarenkorb">
-        <div className="sumWarenkorb">
-          <div className="titleSumWarenkorb">Summe:</div>€ {sumProducts}
-        </div>
-        <div className="pickUpTimeWarenkorb">{/*Picker */}</div>
-        <div className="agbWarenkorb">
-          {/*Checkbox */} Ich habe die AGB gelesen und akuzeptiere diese.
-        </div>
-        <div className="orderWarenkorb">
-          <Link>{/*axios push */} kostenpflichtig Bestellen</Link>
-        </div>
-      </div>
-      <Footer />
     </>
   );
 };
