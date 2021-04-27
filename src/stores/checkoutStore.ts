@@ -1,46 +1,27 @@
-import { observable, action, makeAutoObservable } from "mobx";
+import { observable, action, makeAutoObservable, IObservableArray } from "mobx";
 import { Produkt } from "../models/Produkt";
 import { CheckoutProduct } from "../models/CheckoutProducts";
 
 export class CheckoutStore {
-  @observable checkoutProducts: CheckoutProduct[] = [];
-  private zähler = 0;
-  private checkProduct: CheckoutProduct = {
-    produkt_id: 1,
-    bezeichnung: "",
-    preis: 0,
-    bildPfad: "",
-    urlPfad: "",
-    quantity: 1,
-  };
-  @action addProduct = (products: Produkt) => {
-    if (this.checkoutProducts.length >= 1) {
-      this.checkoutProducts.forEach((element, i) => {
-        if (element.produkt_id === products.produkt_id) {
-          this.removeProduct(i);
-          this.zähler++;
-          this.checkProduct = {
-            produkt_id: products.produkt_id,
-            bezeichnung: products.bezeichnung,
-            preis: products.preis,
-            bildPfad: products.bildPfad,
-            urlPfad: products.urlPfad,
-            quantity: this.zähler,
-          };
-        }
-      });
-    } else {
-      this.checkProduct = {
-        produkt_id: products.produkt_id,
-        bezeichnung: products.bezeichnung,
-        preis: products.preis,
-        bildPfad: products.bildPfad,
-        urlPfad: products.urlPfad,
-        quantity: 1,
-      };
-    }
+  @observable
+  checkoutProducts: IObservableArray<CheckoutProduct> = observable.array<CheckoutProduct>(
+    []
+  );
 
-    this.checkoutProducts.push(this.checkProduct);
+  @action addProduct = (product: Produkt) => {
+    if (
+      this.checkoutProducts.some(
+        (p: CheckoutProduct) => p.produkt_id === product.produkt_id
+      )
+    ) {
+      this.checkoutProducts[
+        this.checkoutProducts.findIndex(
+          (p: CheckoutProduct) => p.produkt_id === product.produkt_id
+        )
+      ].quantity += 1;
+    } else {
+      this.checkoutProducts.push({ ...product, quantity: 1 });
+    }
   };
   @action removeProduct = (index: number) => {
     try {

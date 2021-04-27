@@ -1,0 +1,26 @@
+@import "../../styles/color.scss";
+
+.titleWarenkorb {
+  font-weight: 600;
+  font-size: 3rem;
+  margin-bottom: 3%;
+}
+.item1 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-bottom: 1px solid $Grey;
+  white-space: nowrap;
+
+  padding: 10px 15px 10px 15px;
+}
+.itemsWarenkorb {
+  width: 40%;
+}
+.allWarenkorb {
+  margin-left: 5%;
+  margin-top: 2%;
+}
+.quantityWarenkrob {
+}
