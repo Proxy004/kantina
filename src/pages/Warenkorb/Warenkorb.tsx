@@ -40,37 +40,52 @@ const Warenkorb = () => {
     <>
       <NavBar />
       <div className="allWarenkorb">
-        <div className="titleWarenkorb">Warenkorb</div>
-        <div className="itemsWarenkorb">
-          <div className="itemWarenkorb">
-            {toJS(checkoutStore.checkoutProducts).map(
-              (filteredProduct: CheckoutProduct, i: number) => {
-                console.log(filteredProduct);
-                return (
-                  <div key={i}>
-                    <div className="item1">
-                      {filteredProduct.bezeichnung}
-                      <div className="quantityWarenkorb">
-                        {filteredProduct.quantity}
+        <div className="leftWarenkorb">
+          <div className="titleWarenkorb">Warenkorb</div>
+          <div className="itemsWarenkorb">
+            <div className="itemWarenkorb">
+              {toJS(checkoutStore.checkoutProducts).map(
+                (filteredProduct: CheckoutProduct, i: number) => {
+                  console.log(filteredProduct);
+                  return (
+                    <div key={i}>
+                      <div className="itemWarenkorb1">
+                        {filteredProduct.bezeichnung}
+                        <div className="quantityWarenkorb">
+                          {filteredProduct.quantity}
+                        </div>
+                        €{" "}
+                        {(
+                          filteredProduct.preis * filteredProduct.quantity
+                        ).toFixed(2)}
                       </div>
-                      € {filteredProduct.preis * filteredProduct.quantity}
                     </div>
-                  </div>
-                );
-              }
-            )}
-          </div>
-          <div className="buttonLeftWarenkorb">
-            <FontAwesomeIcon icon={faArrowLeft} />
-          </div>
-          <div className="siteWarenkorb">Seite 1/{siteWarenkorbLength}</div>
-          <div className="buttonRightWarenkorb">
-            <FontAwesomeIcon icon={faArrowRight} />
+                  );
+                }
+              )}
+            </div>
+
+            <div className="navigationWarenkorb">
+              <div className="buttonWarenkorb">
+                <FontAwesomeIcon icon={faArrowLeft} />
+              </div>
+              <div className="siteWarenkorb">Seite 1/{siteWarenkorbLength}</div>
+              {buttonRightDisabled ? (
+                <div className="buttonWarenkorbDisabled">
+                  <FontAwesomeIcon icon={faArrowRight} />
+                </div>
+              ) : (
+                <div className="buttonWarenkorb">
+                  <FontAwesomeIcon icon={faArrowRight} />
+                </div>
+              )}
+            </div>
           </div>
         </div>
         <div className="rightSideWarenkorb">
           <div className="sumWarenkorb">
-            <div className="titleSumWarenkorb">Summe:</div>€ {sumProducts}
+            <div className="titleSumWarenkorb">Summe:</div>€{" "}
+            {sumProducts.toFixed(2)}
           </div>
           <div className="pickUpTimeWarenkorb">{/*Picker */}</div>
           <div className="agbWarenkorb">

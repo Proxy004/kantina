@@ -47,7 +47,7 @@ const ItemCard = (props: { product: Produkt }) => {
               </Link>
             </>
           )}
-          <div className="price">€ {props.product.preis}</div>
+          <div className="price">€ {props.product.preis.toFixed(2)}</div>
           <div className="mwst">inkl. MwSt</div>
         </div>
         <div
