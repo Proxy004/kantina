@@ -14,7 +14,7 @@ const Vegan = () => {
         <div className="titelBrot ">Unsere veganen Speisen</div>
         <div className="alleBrötle">
           {toJS(productStore.product)
-            .filter((products) => products.kategorie.includes("Snacks"))
+            .filter((products) => products.kategorie.includes("Vegan"))
             .map((filteredProduct: Produkt, i: number) => {
               if (i > 0) {
                 return (
