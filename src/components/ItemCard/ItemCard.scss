@@ -10,16 +10,19 @@
   padding-bottom: 10%;
   height: 450px;
   max-height: 450px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .allCard {
+  margin-top: -5%;
   margin-left: 5%;
   margin-right: 5%;
 }
 .imageProduct {
   width: 100%;
-  height: 80%;
+  height: 200px;
+  max-height: 300px;
   margin-left: 0%;
-  margin-bottom: 3%;
+  margin-bottom: 10%;
 }
 
 .title {

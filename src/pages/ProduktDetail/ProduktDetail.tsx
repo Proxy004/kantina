@@ -66,7 +66,9 @@ const ProduktÜbersicht: React.FC<ProduktÜbersichtProps> = ({
           </div>
           <div className="productRowData">
             <div className="productPriceAll">
-              <div className="productPrice">€ {productDetailInfos.preis}</div>
+              <div className="productPrice">
+                € {productDetailInfos.preis.toFixed(2)}
+              </div>
               <div className="productMwst">inkl. MwSt</div>
             </div>
             <div

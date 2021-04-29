@@ -3,24 +3,58 @@
 .titleWarenkorb {
   font-weight: 600;
   font-size: 3rem;
-  margin-bottom: 3%;
+  margin-bottom: 10%;
 }
-.item1 {
+.allWarenkorb {
   display: flex;
   justify-content: space-between;
+  margin-left: 5%;
+  margin-top: 4%;
+  max-width: 1920px;
+}
+.leftWarenkorb {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+}
+.navigationWarenkorb {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 5%;
+}
+.itemWarenkorb1 {
+  display: flex;
   font-size: 1.5rem;
   font-weight: 600;
   border-bottom: 1px solid $Grey;
   white-space: nowrap;
-
   padding: 10px 15px 10px 15px;
 }
-.itemsWarenkorb {
-  width: 40%;
+.buttonWarenkorbDisabled {
+  color: white;
+  background-color: $Grey;
+  padding: 10px 25px 10px 25px;
+  border-radius: 20px;
+  cursor: not-allowed;
 }
-.allWarenkorb {
-  margin-left: 5%;
-  margin-top: 2%;
+.rightSideWarenkorb {
+  margin-right: 10%;
 }
-.quantityWarenkrob {
+.titleSumWarenkorb {
+  color: $Green;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+.sumWarenkorb {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+.buttonWarenkorb {
+  color: white;
+  background-color: $Green;
+  padding: 10px 25px 10px 25px;
+  border-radius: 20px;
+  cursor: pointer;
 }
