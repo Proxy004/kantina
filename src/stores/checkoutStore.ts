@@ -1,6 +1,7 @@
 import { observable, action, makeAutoObservable, IObservableArray } from "mobx";
 import { Produkt } from "../models/Produkt";
 import { CheckoutProduct } from "../models/CheckoutProducts";
+import axios from "axios";
 
 export class CheckoutStore {
   @observable
@@ -23,11 +24,19 @@ export class CheckoutStore {
       this.checkoutProducts.push({ ...product, quantity: 1 });
     }
   };
-  @action removeProduct = (index: number) => {
-    try {
-      this.checkoutProducts.splice(index, 1);
-    } catch (e) {}
-  };
+  @action sendtoDb(product: IObservableArray<CheckoutProduct>) {
+    (async () => {
+      try {
+        await axios.post(
+          `${`${process.env.REACT_APP_API_URL}/products` || ""}`,
+          {
+            product,
+          },
+          { headers: { "Content-Type": "application/json" } }
+        );
+      } catch (err) {}
+    })();
+  }
   constructor() {
     makeAutoObservable(this);
   }

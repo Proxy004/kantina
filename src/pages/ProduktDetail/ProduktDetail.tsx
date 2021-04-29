@@ -42,7 +42,6 @@ const ProduktÜbersicht: React.FC<ProduktÜbersichtProps> = ({
   return (
     <>
       <NavBar />
-
       <div className="productView">
         <img
           src={require(`../../assets/${productDetailInfos.bildPfad}`).default}

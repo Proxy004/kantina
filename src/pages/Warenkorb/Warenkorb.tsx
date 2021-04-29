@@ -46,7 +46,6 @@ const Warenkorb = () => {
             <div className="itemWarenkorb">
               {toJS(checkoutStore.checkoutProducts).map(
                 (filteredProduct: CheckoutProduct, i: number) => {
-                  console.log(filteredProduct);
                   return (
                     <div key={i}>
                       <div className="itemWarenkorb1">
@@ -87,12 +86,20 @@ const Warenkorb = () => {
             <div className="titleSumWarenkorb">Summe:</div>€{" "}
             {sumProducts.toFixed(2)}
           </div>
-          <div className="pickUpTimeWarenkorb">{/*Picker */}</div>
+          <div className="pickUpTimeWarenkorb">
+            Abholzeit:
+            <input type="time" />
+          </div>
+
           <div className="agbWarenkorb">
-            {/*Checkbox */} Ich habe die AGB gelesen und akzeptiere diese.
+            <input type="checkbox" /> Ich habe die AGB gelesen und akzeptiere
+            diese.
           </div>
           <div className="orderWarenkorb">
-            <Link>{/*axios push */} kostenpflichtig Bestellen</Link>
+            <Link>
+              {checkoutStore.sendtoDb(checkoutStore.checkoutProducts)}
+              <div className="textWarenkorb">kostenpflichtig Bestellen</div>
+            </Link>
           </div>
         </div>
         <Footer />

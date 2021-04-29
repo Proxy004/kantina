@@ -8,6 +8,7 @@
 .allWarenkorb {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
   margin-left: 5%;
   margin-top: 4%;
   max-width: 1920px;
@@ -15,7 +16,7 @@
 .leftWarenkorb {
   display: flex;
   flex-direction: column;
-  width: 35%;
+  width: 50%;
 }
 .navigationWarenkorb {
   display: flex;
@@ -27,7 +28,6 @@
 .itemWarenkorb1 {
   display: flex;
   font-size: 1.5rem;
-  font-weight: 600;
   border-bottom: 1px solid $Grey;
   white-space: nowrap;
   padding: 10px 15px 10px 15px;
@@ -43,12 +43,14 @@
   margin-right: 10%;
 }
 .titleSumWarenkorb {
-  color: $Green;
-  font-size: 1.8rem;
+  color: black;
+  font-size: 1.6rem;
   font-weight: 600;
+  margin-bottom: 5%;
 }
 .sumWarenkorb {
-  font-size: 1.8rem;
+  color: $Green;
+  font-size: 2.5rem;
   font-weight: 600;
 }
 .buttonWarenkorb {
@@ -57,4 +59,54 @@
   padding: 10px 25px 10px 25px;
   border-radius: 20px;
   cursor: pointer;
+}
+.pickUpTimeWarenkorb {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15%;
+  font-size: 1.1rem;
+  line-height: 2.5rem;
+}
+input[type="time"] {
+  outline: none;
+  background-color: $White;
+  border-bottom: 3px solid $Grey;
+  border: none;
+  padding: 5px 15px 5px 15px;
+  font-size: 1.1rem;
+}
+
+input[type="time"]::-webkit-clear-button {
+  display: none;
+}
+
+input[type="time"]::-webkit-inner-spin-button {
+  display: none;
+}
+input[type="time"]:invalid {
+  border-bottom: 3px solid #ef0000;
+  background-color: $White;
+}
+input[type="time"]:valid {
+  border-bottom: 3px solid $Green;
+  background-color: $White;
+}
+
+.agbWarenkorb {
+  margin-top: 5%;
+}
+.orderWarenkorb {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+  background-color: $Green;
+  text-decoration: none;
+
+  padding: 10px 15px 10px 15px;
+  border-radius: 50px;
+}
+.textWarenkorb {
+  color: $White;
+  font-weight: 600;
+  font-size: 1.2rem;
 }
