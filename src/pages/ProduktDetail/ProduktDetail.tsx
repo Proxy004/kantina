@@ -10,6 +10,7 @@ import { productStore } from "../../stores/productStore";
 import { checkoutStore } from "../../stores/checkoutStore";
 import { inject, observer } from "mobx-react";
 import { toJS } from "mobx";
+import Ticker from "react-ticker";
 
 interface ProduktÜbersichtProps {
   match?: any;
@@ -19,6 +20,13 @@ interface ProduktÜbersichtProps {
 const ProduktÜbersicht: React.FC<ProduktÜbersichtProps> = ({
   match,
 }: ProduktÜbersichtProps) => {
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const AnimatonEnter: () => void = () => {
+    setIsHovered(true);
+  };
+  const AnimatonLeave: () => void = () => {
+    setIsHovered(false);
+  };
   const [productDetailInfos, setProductDetailInfos] = useState<Produkt>({
     produkt_id: 0,
     bezeichnung: "",
@@ -49,7 +57,18 @@ const ProduktÜbersicht: React.FC<ProduktÜbersichtProps> = ({
           className="productPicture"
         />
         <div className="productText">
-          <div className="productTitle">{productDetailInfos.bezeichnung}</div>
+          {isHovered ? (
+            <div onMouseLeave={() => AnimatonLeave()} className="productTitle">
+              <Ticker speed={9} mode={"await"} move={isHovered}>
+                {() => productDetailInfos.bezeichnung}
+              </Ticker>
+            </div>
+          ) : (
+            <div onMouseEnter={() => AnimatonEnter()} className="productTitle">
+              {productDetailInfos.bezeichnung}
+            </div>
+          )}
+
           <div className="productAllergenes">
             {productDetailInfos.allergene}
           </div>
@@ -60,6 +79,7 @@ const ProduktÜbersicht: React.FC<ProduktÜbersichtProps> = ({
             </div>
             <div className="productDescription">
               <div className="productIngredientsTitle">Beschreibung:</div>
+
               {productDetailInfos.beschreibung}
             </div>
           </div>
