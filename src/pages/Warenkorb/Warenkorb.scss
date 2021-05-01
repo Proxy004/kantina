@@ -13,10 +13,14 @@
   margin-top: 4%;
   max-width: 1920px;
 }
+
 .leftWarenkorb {
   display: flex;
   flex-direction: column;
   width: 50%;
+}
+.bezeichnungWarenkorb {
+  width: 500px;
 }
 .navigationWarenkorb {
   display: flex;
@@ -25,12 +29,16 @@
   align-items: center;
   margin-top: 5%;
 }
+.sumWarenkorb1 {
+  margin-left: 200px;
+}
 .itemWarenkorb1 {
   display: flex;
   font-size: 1.5rem;
   border-bottom: 1px solid $Grey;
   white-space: nowrap;
   padding: 10px 15px 10px 15px;
+  max-width: 1000px;
 }
 .buttonWarenkorbDisabled {
   color: white;
@@ -38,6 +46,16 @@
   padding: 10px 25px 10px 25px;
   border-radius: 20px;
   cursor: not-allowed;
+}
+.plusWarenkorb {
+  cursor: pointer;
+  color: $Green;
+  padding-right: 10px;
+}
+.minusWarenkorb {
+  cursor: pointer;
+  color: $Green;
+  padding-left: 10px;
 }
 .rightSideWarenkorb {
   margin-right: 10%;
@@ -101,7 +119,6 @@ input[type="time"]:valid {
   margin-top: 10%;
   background-color: $Green;
   text-decoration: none;
-
   padding: 10px 15px 10px 15px;
   border-radius: 50px;
 }

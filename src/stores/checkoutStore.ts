@@ -37,6 +37,22 @@ export class CheckoutStore {
       } catch (err) {}
     })();
   }
+  @action decreaseAmount = (product: CheckoutProduct) => {
+    if (product.quantity > 1) {
+      this.checkoutProducts[
+        this.checkoutProducts.findIndex(
+          (p: CheckoutProduct) => p.produkt_id === product.produkt_id
+        )
+      ].quantity -= 1;
+    }
+  };
+  @action increaseAmount = (product: CheckoutProduct) => {
+    this.checkoutProducts[
+      this.checkoutProducts.findIndex(
+        (p: CheckoutProduct) => p.produkt_id === product.produkt_id
+      )
+    ].quantity += 1;
+  };
   constructor() {
     makeAutoObservable(this);
   }
