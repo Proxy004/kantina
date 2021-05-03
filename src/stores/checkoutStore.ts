@@ -24,13 +24,14 @@ export class CheckoutStore {
       this.checkoutProducts.push({ ...product, quantity: 1 });
     }
   };
-  @action sendtoDb(product: IObservableArray<CheckoutProduct>) {
+  @action sendtoDb(product: IObservableArray<CheckoutProduct>, time: string) {
     (async () => {
       try {
         await axios.post(
           `${`${process.env.REACT_APP_API_URL}/products` || ""}`,
           {
             product,
+            time,
           },
           { headers: { "Content-Type": "application/json" } }
         );
