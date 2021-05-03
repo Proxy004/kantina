@@ -22,6 +22,8 @@ const Warenkorb = () => {
   const [WarenkorbSiteEnd, setWarenkorbSiteEnd] = useState(5);
   const [WarenkorbSiteStart, setWarenkorbSiteStart] = useState(0);
   const [buttonRightDisabled, setButtonRightDisabled] = useState(true);
+  const [time, setTime] = useState("");
+  const [checked, setChecked] = useState(false);
   const [site, setSite] = useState(1);
 
   useEffect(() => {
@@ -37,6 +39,7 @@ const Warenkorb = () => {
       setButtonRightDisabled(true);
     }
   }, [setSiteWarenkorbLength, siteWarenkorbLength]);
+
   const updateWarenkrobSum = () => {
     let sum: number = 0;
     toJS(checkoutStore.checkoutProducts).forEach((Product) => {
@@ -44,6 +47,7 @@ const Warenkorb = () => {
     });
     setSumProducts(sum);
   };
+
   const setSiteWarenkorbUp = () => {
     if (WarenkorbSiteEnd < checkoutStore.checkoutProducts.length) {
       setWarenkorbSiteStart(WarenkorbSiteEnd);
@@ -62,6 +66,14 @@ const Warenkorb = () => {
     }
   };
 
+  const setAgb = () => {
+    setChecked(!checked);
+  };
+  const checkAgbAndSend = () => {
+    if (checked) {
+      checkoutStore.sendtoDb(checkoutStore.checkoutProducts, time);
+    }
+  };
   const useForceUpdate = () => {
     const [value, setValue] = useState(0); // integer state
     return () => setValue((value) => value + 1); // update the state to force render
@@ -154,23 +166,23 @@ const Warenkorb = () => {
           </div>
           <div className="pickUpTimeWarenkorb">
             Abholzeit:
-            <input type="time" />
+            <input
+              type="time"
+              onChange={(e) => setTime(e.target.value)}
+              value={time}
+            />
           </div>
 
           <div className="agbWarenkorb">
-            <input type="checkbox" /> Ich habe die AGB gelesen und akzeptiere
-            diese.
+            <input type="checkbox" onChange={setAgb} /> Ich habe die AGB gelesen
+            und akzeptiere diese.
           </div>
-          <div
-            className="orderWarenkorb"
-            onClick={() =>
-              checkoutStore.sendtoDb(checkoutStore.checkoutProducts)
-            }
-          >
+          <div className="orderWarenkorb" onClick={() => checkAgbAndSend()}>
             <Link>
               <div className="textWarenkorb">kostenpflichtig Bestellen</div>
             </Link>
           </div>
+          <div className="agbNotAccepted"> Bitte akzeptiere unsere AGB's! </div>
         </div>
         <Footer />
       </div>
