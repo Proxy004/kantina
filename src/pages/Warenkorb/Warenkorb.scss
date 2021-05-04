@@ -127,3 +127,19 @@ input[type="time"]:valid {
   font-weight: 600;
   font-size: 1.2rem;
 }
+.errorWarenkorb {
+  color: #ef0000;
+  padding-top: 5%;
+  font-weight: 600;
+  white-space: pre;
+}
+.nullItems {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $Green;
+  font-weight: 600;
+  padding-top: 10%;
+  padding-bottom: 10%;
+  font-size: 1.6rem;
+}

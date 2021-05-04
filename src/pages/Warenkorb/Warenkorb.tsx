@@ -16,29 +16,24 @@ import { toJS } from "mobx";
 
 const Warenkorb = () => {
   const [sumProducts, setSumProducts] = useState(0);
-  const [siteWarenkorbLength, setSiteWarenkorbLength] = useState(
-    Math.ceil(checkoutStore.checkoutProducts.length / 5)
-  );
+  const [siteWarenkorbLength, setSiteWarenkorbLength] = useState(0);
   const [WarenkorbSiteEnd, setWarenkorbSiteEnd] = useState(5);
   const [WarenkorbSiteStart, setWarenkorbSiteStart] = useState(0);
   const [buttonRightDisabled, setButtonRightDisabled] = useState(true);
+  const [error, setError] = useState("");
   const [time, setTime] = useState("");
   const [checked, setChecked] = useState(false);
   const [site, setSite] = useState(1);
+  const errors = [
+    "Bitte akzeptiere unsere AGB's!",
+    "Bitte wählen Sie ein Datum aus!",
+    "Fügen Sie Podukte hinzu!",
+  ];
 
   useEffect(() => {
     updateWarenkrobSum();
-    //WarenkorbSite
-    if (siteWarenkorbLength === 0) {
-      setSiteWarenkorbLength(1);
-    }
-    //setButtonDisabled
-    if (siteWarenkorbLength > 1) {
-      setButtonRightDisabled(false);
-    } else {
-      setButtonRightDisabled(true);
-    }
-  }, [setSiteWarenkorbLength, siteWarenkorbLength]);
+    updateLength();
+  }, [setSiteWarenkorbLength]);
 
   const updateWarenkrobSum = () => {
     let sum: number = 0;
@@ -46,6 +41,23 @@ const Warenkorb = () => {
       sum += Product.preis * Product.quantity;
     });
     setSumProducts(sum);
+  };
+  const updateLength = () => {
+    let length: number;
+    let bool: boolean;
+    length = Math.ceil(checkoutStore.checkoutProducts.length / 5);
+
+    if (length === 0) {
+      length = 1;
+    }
+
+    if (length > 1) {
+      bool = false;
+    } else {
+      bool = true;
+    }
+    setSiteWarenkorbLength(length);
+    setButtonRightDisabled(bool);
   };
 
   const setSiteWarenkorbUp = () => {
@@ -69,15 +81,41 @@ const Warenkorb = () => {
   const setAgb = () => {
     setChecked(!checked);
   };
-  const checkAgbAndSend = () => {
-    if (checked) {
-      checkoutStore.sendtoDb(checkoutStore.checkoutProducts, time);
-    }
-  };
+
   const useForceUpdate = () => {
     const [value, setValue] = useState(0); // integer state
     return () => setValue((value) => value + 1); // update the state to force render
   };
+  const renderError = () => {
+    console.log(time);
+    if (
+      !checked ||
+      time.trim() === "" ||
+      checkoutStore.checkoutProducts.length < 1
+    ) {
+      if (!checked) {
+        setError(errors[0]);
+      }
+      if (time.trim() === "") {
+        console.log("afds");
+        setError(errors[1]);
+      }
+      if (!checked && time.trim() === "") {
+        setError(`${errors[0]}\n${errors[1]}`);
+      }
+      if (
+        !checked &&
+        time.trim() === "" &&
+        checkoutStore.checkoutProducts.length < 1
+      ) {
+        setError(`${errors[0]}\n${errors[1]}\n${errors[2]}`);
+      }
+    } else {
+      checkoutStore.sendtoDb(checkoutStore.checkoutProducts, time);
+      setError("");
+    }
+  };
+
   const forceUpdate = useForceUpdate();
   return (
     <>
@@ -86,51 +124,56 @@ const Warenkorb = () => {
         <div className="leftWarenkorb">
           <div className="titleWarenkorb">Warenkorb</div>
           <div className="itemsWarenkorb">
-            <div className="itemWarenkorb">
-              {toJS(checkoutStore.checkoutProducts)
-                .slice(WarenkorbSiteStart, WarenkorbSiteEnd)
-                .map((filteredProduct: CheckoutProduct, i: number) => {
-                  return (
-                    <div key={i}>
-                      {}
-                      <div className="itemWarenkorb1">
-                        <div className="bezeichnungWarenkorb">
-                          {filteredProduct.bezeichnung}
-                        </div>
-                        <div className="quantityWarenkorb">
-                          <FontAwesomeIcon
-                            icon={faMinusCircle}
-                            className="plusWarenkorb"
-                            onClick={() => {
-                              checkoutStore.decreaseAmount(filteredProduct);
-                              forceUpdate();
-                              updateWarenkrobSum();
-                            }}
-                          />
+            {checkoutStore.checkoutProducts.length >= 1 ? (
+              <div className="itemWarenkorb">
+                {toJS(checkoutStore.checkoutProducts)
+                  .slice(WarenkorbSiteStart, WarenkorbSiteEnd)
+                  .map((filteredProduct: CheckoutProduct, i: number) => {
+                    return (
+                      <div key={i}>
+                        <div className="itemWarenkorb1">
+                          <div className="bezeichnungWarenkorb">
+                            {filteredProduct.bezeichnung}
+                          </div>
+                          <div className="quantityWarenkorb">
+                            <FontAwesomeIcon
+                              icon={faMinusCircle}
+                              className="plusWarenkorb"
+                              onClick={() => {
+                                checkoutStore.decreaseAmount(filteredProduct);
+                                forceUpdate();
+                                updateLength();
+                                updateWarenkrobSum();
+                              }}
+                            />
 
-                          {filteredProduct.quantity}
-                          <FontAwesomeIcon
-                            icon={faPlusCircle}
-                            className="minusWarenkorb"
-                            onClick={() => {
-                              checkoutStore.increaseAmount(filteredProduct);
-                              forceUpdate();
-                              updateWarenkrobSum();
-                            }}
-                          />
-                        </div>
-                        <div className="sumWarenkorb1">
-                          €{" "}
-                          {(
-                            filteredProduct.preis * filteredProduct.quantity
-                          ).toFixed(2)}
+                            {filteredProduct.quantity}
+                            <FontAwesomeIcon
+                              icon={faPlusCircle}
+                              className="minusWarenkorb"
+                              onClick={() => {
+                                checkoutStore.increaseAmount(filteredProduct);
+                                forceUpdate();
+                                updateWarenkrobSum();
+                              }}
+                            />
+                          </div>
+                          <div className="sumWarenkorb1">
+                            €{" "}
+                            {(
+                              filteredProduct.preis * filteredProduct.quantity
+                            ).toFixed(2)}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
-            </div>
-
+                    );
+                  })}
+              </div>
+            ) : (
+              <div className="nullItems">
+                Füge Produkte zum Warenkorb hinzu!
+              </div>
+            )}
             <div className="navigationWarenkorb">
               <div
                 className="buttonWarenkorb"
@@ -177,13 +220,19 @@ const Warenkorb = () => {
             <input type="checkbox" onChange={setAgb} /> Ich habe die AGB gelesen
             und akzeptiere diese.
           </div>
-          <div className="orderWarenkorb" onClick={() => checkAgbAndSend()}>
+          <div
+            className="orderWarenkorb"
+            onClick={() => {
+              renderError();
+            }}
+          >
             <Link>
               <div className="textWarenkorb">kostenpflichtig Bestellen</div>
             </Link>
           </div>
-          <div className="agbNotAccepted"> Bitte akzeptiere unsere AGB's! </div>
+          <div className="errorWarenkorb">{error}</div>
         </div>
+
         <Footer />
       </div>
     </>

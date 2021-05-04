@@ -45,6 +45,12 @@ export class CheckoutStore {
           (p: CheckoutProduct) => p.produkt_id === product.produkt_id
         )
       ].quantity -= 1;
+    } else {
+      this.deleteProduct(
+        this.checkoutProducts.findIndex(
+          (p: CheckoutProduct) => p.produkt_id === product.produkt_id
+        )
+      );
     }
   };
   @action increaseAmount = (product: CheckoutProduct) => {
@@ -53,6 +59,13 @@ export class CheckoutStore {
         (p: CheckoutProduct) => p.produkt_id === product.produkt_id
       )
     ].quantity += 1;
+  };
+  @action deleteProduct = (i: number) => {
+    try {
+      this.checkoutProducts.splice(i, 1);
+    } catch (err) {
+      return "ERROR " + err;
+    }
   };
   constructor() {
     makeAutoObservable(this);
