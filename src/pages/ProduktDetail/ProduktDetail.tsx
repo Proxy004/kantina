@@ -11,6 +11,7 @@ import { checkoutStore } from "../../stores/checkoutStore";
 import { inject, observer } from "mobx-react";
 import { toJS } from "mobx";
 import Ticker from "react-ticker";
+import gsap from "gsap";
 
 interface ProduktÜbersichtProps {
   match?: any;
@@ -44,7 +45,15 @@ const ProduktÜbersicht: React.FC<ProduktÜbersichtProps> = ({
       if (filteredProduct.urlPfad === match.params.productUrl) {
         setProductDetailInfos(filteredProduct);
       }
+      return "";
     });
+    gsap.fromTo(
+      ".gsapAnimation1",
+      1,
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1 }
+    );
+    gsap.fromTo(".productText", 1, { x: 50, opacity: 0 }, { x: 0, opacity: 1 });
   }, [setProductDetailInfos, match.params.productUrl]);
 
   return (
@@ -75,12 +84,16 @@ const ProduktÜbersicht: React.FC<ProduktÜbersichtProps> = ({
           <div className="productTextBot">
             <div className="productIngredients">
               <div className="productIngredientsTitle">Zutaten:</div>
-              {productDetailInfos.inhaltsstoffe}
+              <div className="gsapAnimation1">
+                {productDetailInfos.inhaltsstoffe}
+              </div>
             </div>
             <div className="productDescription">
               <div className="productIngredientsTitle">Beschreibung:</div>
 
-              {productDetailInfos.beschreibung}
+              <div className="gsapAnimation1">
+                {productDetailInfos.beschreibung}
+              </div>
             </div>
           </div>
           <div className="productRowData">

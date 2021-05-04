@@ -13,6 +13,7 @@ import { checkoutStore } from "../../stores/checkoutStore";
 import { CheckoutProduct } from "../../models/CheckoutProducts";
 import "./Warenkorb.scss";
 import { toJS } from "mobx";
+import gsap from "gsap";
 
 const Warenkorb = () => {
   const [sumProducts, setSumProducts] = useState(0);
@@ -31,6 +32,18 @@ const Warenkorb = () => {
   ];
 
   useEffect(() => {
+    gsap.fromTo(
+      ".itemWarenkorb1",
+      1,
+      { x: 50, opacity: 0 },
+      { x: 0, opacity: 1, stagger: 0.1 }
+    );
+    gsap.fromTo(
+      ".sumOfProducts",
+      1,
+      { x: 50, opacity: 0 },
+      { x: 0, opacity: 1 }
+    );
     updateWarenkrobSum();
     updateLength();
   }, [setSiteWarenkorbLength]);
@@ -83,11 +96,10 @@ const Warenkorb = () => {
   };
 
   const useForceUpdate = () => {
-    const [value, setValue] = useState(0); // integer state
-    return () => setValue((value) => value + 1); // update the state to force render
+    const [value, setValue] = useState(0);
+    return () => setValue((value) => value + 1);
   };
   const renderError = () => {
-    console.log(time);
     if (
       !checked ||
       time.trim() === "" ||
@@ -204,8 +216,8 @@ const Warenkorb = () => {
         </div>
         <div className="rightSideWarenkorb">
           <div className="sumWarenkorb">
-            <div className="titleSumWarenkorb">Summe:</div>€{" "}
-            {sumProducts.toFixed(2)}
+            <div className="titleSumWarenkorb">Summe:</div>
+            <div className="sumOfProducts">€ {sumProducts.toFixed(2)}</div>
           </div>
           <div className="pickUpTimeWarenkorb">
             Abholzeit:

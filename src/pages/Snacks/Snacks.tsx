@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import ItemCard from "../../components/ItemCard/ItemCard";
 import { Produkt } from "../../models/Produkt";
 import { productStore } from "../../stores/productStore";
 import { toJS } from "mobx";
+import gsap from "gsap";
 
 const Snacks = () => {
+  useEffect(() => {
+    gsap.fromTo(
+      ".item1",
+      1,
+      { x: 50, opacity: 0 },
+      { x: 0, opacity: 1, stagger: 0.1 }
+    );
+  }, []);
   return (
     <>
       <NavBar />
