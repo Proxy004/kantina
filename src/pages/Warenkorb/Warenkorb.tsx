@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
@@ -15,6 +14,7 @@ import "./Warenkorb.scss";
 import { toJS } from "mobx";
 import gsap from "gsap";
 import { authStore } from "../../stores/authStore";
+import { useHistory } from "react-router-dom";
 
 const Warenkorb = () => {
   const [sumProducts, setSumProducts] = useState(0);
@@ -45,11 +45,11 @@ const Warenkorb = () => {
       { x: 50, opacity: 0 },
       { x: 0, opacity: 1 }
     );
-    updateWarenkrobSum();
+    updateWarenkorbSum();
     updateLength();
   }, [setSiteWarenkorbLength]);
 
-  const updateWarenkrobSum = () => {
+  const updateWarenkorbSum = () => {
     let sum: number = 0;
     toJS(checkoutStore.checkoutProducts).forEach((Product) => {
       sum += Product.preis * Product.quantity;
@@ -95,7 +95,7 @@ const Warenkorb = () => {
   const setAgb = () => {
     setChecked(!checked);
   };
-
+  const history = useHistory();
   const useForceUpdate = () => {
     const [value, setValue] = useState(0);
     return () => setValue((value) => value + 1);
@@ -129,11 +129,14 @@ const Warenkorb = () => {
         time,
         authStore.loggedInUser
       );
+      history.push("/warenkorb/orderCompleted");
+      forceUpdate();
       setError("");
     }
   };
 
   const forceUpdate = useForceUpdate();
+
   return (
     <>
       <NavBar />
@@ -160,23 +163,25 @@ const Warenkorb = () => {
                                 checkoutStore.decreaseAmount(filteredProduct);
                                 forceUpdate();
                                 updateLength();
-                                updateWarenkrobSum();
+                                updateWarenkorbSum();
                               }}
                             />
 
-                            {filteredProduct.quantity}
+                            <span className="quantityWarenkorb">
+                              {filteredProduct.quantity}
+                            </span>
                             <FontAwesomeIcon
                               icon={faPlusCircle}
                               className="minusWarenkorb"
                               onClick={() => {
                                 checkoutStore.increaseAmount(filteredProduct);
                                 forceUpdate();
-                                updateWarenkrobSum();
+                                updateWarenkorbSum();
                               }}
                             />
                           </div>
                           <div className="sumWarenkorb1">
-                            €{" "}
+                            €
                             {(
                               filteredProduct.preis * filteredProduct.quantity
                             ).toFixed(2)}
@@ -243,9 +248,7 @@ const Warenkorb = () => {
               renderError();
             }}
           >
-            <Link>
-              <div className="textWarenkorb">kostenpflichtig Bestellen</div>
-            </Link>
+            <div className="textWarenkorb">kostenpflichtig Bestellen</div>
           </div>
           <div className="errorWarenkorb">{error}</div>
         </div>

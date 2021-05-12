@@ -18,6 +18,7 @@ import Snacks from "./pages/Snacks/Snacks";
 import Süßes from "./pages/Süßes/Süßes";
 import Vegan from "./pages/Vegan/Vegan";
 import Warenkorb from "./pages/Warenkorb/Warenkorb";
+import OrderCompleted from "./pages/OrderCompleted/OrderCompleted";
 
 //store
 import { AuthStore } from "./stores/authStore";
@@ -32,6 +33,7 @@ const pages = {
   süßes: Süßes,
   vegan: Vegan,
   warenkorb: Warenkorb,
+  orderCompleted: OrderCompleted,
 };
 
 interface AppProps {
@@ -131,6 +133,15 @@ const App = ({ authStore }: AppProps) => {
             component={
               authStore?.loggedIn
                 ? () => <pages.brot></pages.brot>
+                : () => <Redirect to="/login"></Redirect>
+            }
+          ></Route>
+          <Route
+            exact
+            path="/warenkorb/orderCompleted"
+            component={
+              authStore?.loggedIn
+                ? () => <pages.orderCompleted></pages.orderCompleted>
                 : () => <Redirect to="/login"></Redirect>
             }
           ></Route>

@@ -1,0 +1,28 @@
+@import "../../styles/color.scss";
+
+.allOrderComplete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3%;
+}
+.backToHome {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  background-color: $Green;
+  font-size: 1.3rem;
+  padding: 10px 40px 10px 40px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.textOrderCompleted {
+  font-size: 1.2rem;
+  padding-bottom: 50px;
+}
+.iconHome {
+  padding-right: 10px;
+}

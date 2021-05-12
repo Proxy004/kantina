@@ -30,10 +30,12 @@
   margin-top: 5%;
 }
 .sumWarenkorb1 {
-  margin-left: 200px;
+  margin-left: calc(1000px-580px);
 }
+
 .itemWarenkorb1 {
   display: flex;
+  justify-content: flex-start;
   font-size: 1.5rem;
   border-bottom: 1px solid $Grey;
   white-space: nowrap;
@@ -77,6 +79,9 @@
   padding: 10px 25px 10px 25px;
   border-radius: 20px;
   cursor: pointer;
+}
+.quantityWarenkorb {
+  width: 190px;
 }
 .pickUpTimeWarenkorb {
   display: flex;
@@ -124,6 +129,7 @@ input[type="time"]:valid {
 }
 .textWarenkorb {
   color: $White;
+  cursor: pointer;
   font-weight: 600;
   font-size: 1.2rem;
 }

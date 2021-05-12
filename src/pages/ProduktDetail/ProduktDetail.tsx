@@ -105,7 +105,9 @@ const ProduktÜbersicht: React.FC<ProduktÜbersichtProps> = ({
             </div>
             <div
               className="productBuy"
-              onClick={() => checkoutStore.addProduct(productDetailInfos)}
+              onClick={() => {
+                checkoutStore.addProduct(productDetailInfos);
+              }}
             >
               <div className="productShoppingIcon">
                 <FontAwesomeIcon icon={faShoppingCart} />

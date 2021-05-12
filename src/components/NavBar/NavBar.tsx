@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./NavBar.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,6 +12,7 @@ import { inject, observer } from "mobx-react";
 import Menu from "../Menu/Menu";
 import Profile from "../Profile/Profil";
 import { Link } from "react-router-dom";
+import { checkoutStore } from "../../stores/checkoutStore";
 
 const NavBar = () => {
   return (
@@ -29,7 +30,12 @@ const NavBar = () => {
           </li>
           <li className="menuPoint">
             <Link to={`/warenkorb`} className="cart">
-              <FontAwesomeIcon icon={faShoppingCart} />
+              <span className={"fa-layers fa-fw "}>
+                <FontAwesomeIcon icon={faShoppingCart} />
+                <span className={"fa-layers-counter"}>
+                  {checkoutStore.lengthOfArry}
+                </span>
+              </span>
             </Link>
           </li>
         </ul>

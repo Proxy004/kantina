@@ -52,7 +52,9 @@ const ItemCard = (props: { product: Produkt }) => {
         </div>
         <div
           className="jetztKaufen"
-          onClick={() => checkoutStore.addProduct(props.product)}
+          onClick={() => {
+            checkoutStore.addProduct(props.product);
+          }}
         >
           <FontAwesomeIcon icon={faShoppingCart} />
           <span className="text">Jetzt kaufen</span>

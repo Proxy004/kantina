@@ -8,8 +8,18 @@ export class CheckoutStore {
   checkoutProducts: IObservableArray<CheckoutProduct> = observable.array<CheckoutProduct>(
     []
   );
-
+  @observable lengthOfArry: number = 0;
+  @action getLengthOfArry = () => {
+    this.lengthOfArry = 0;
+    this.checkoutProducts.forEach((e) => {
+      this.lengthOfArry += e.quantity;
+    });
+  };
+  @action clearWarenkorb = () => {
+    this.checkoutProducts.length = 0;
+  };
   @action addProduct = (product: Produkt) => {
+    this.getLengthOfArry();
     if (
       this.checkoutProducts.some(
         (p: CheckoutProduct) => p.produkt_id === product.produkt_id
@@ -45,6 +55,7 @@ export class CheckoutStore {
   }
 
   @action decreaseAmount = (product: CheckoutProduct) => {
+    this.getLengthOfArry();
     if (product.quantity > 1) {
       this.checkoutProducts[
         this.checkoutProducts.findIndex(
@@ -60,6 +71,7 @@ export class CheckoutStore {
     }
   };
   @action increaseAmount = (product: CheckoutProduct) => {
+    this.getLengthOfArry();
     this.checkoutProducts[
       this.checkoutProducts.findIndex(
         (p: CheckoutProduct) => p.produkt_id === product.produkt_id
