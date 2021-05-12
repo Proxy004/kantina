@@ -97,6 +97,7 @@ const Warenkorb = () => {
   };
   const history = useHistory();
   const useForceUpdate = () => {
+    //eslint-disable-next-line
     const [value, setValue] = useState(0);
     return () => setValue((value) => value + 1);
   };
