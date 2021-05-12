@@ -24,20 +24,26 @@ export class CheckoutStore {
       this.checkoutProducts.push({ ...product, quantity: 1 });
     }
   };
-  @action sendtoDb(product: IObservableArray<CheckoutProduct>, time: string) {
+  @action sendOrderToDb(
+    product: IObservableArray<CheckoutProduct>,
+    time: string,
+    email: string
+  ) {
     (async () => {
       try {
         await axios.post(
-          `${`${process.env.REACT_APP_API_URL}/products` || ""}`,
+          `${`${process.env.REACT_APP_API_URL}/orders/newOrder` || ""}`,
           {
             product,
             time,
+            email,
           },
           { headers: { "Content-Type": "application/json" } }
         );
       } catch (err) {}
     })();
   }
+
   @action decreaseAmount = (product: CheckoutProduct) => {
     if (product.quantity > 1) {
       this.checkoutProducts[

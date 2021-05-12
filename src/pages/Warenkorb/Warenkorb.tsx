@@ -14,6 +14,7 @@ import { CheckoutProduct } from "../../models/CheckoutProducts";
 import "./Warenkorb.scss";
 import { toJS } from "mobx";
 import gsap from "gsap";
+import { authStore } from "../../stores/authStore";
 
 const Warenkorb = () => {
   const [sumProducts, setSumProducts] = useState(0);
@@ -123,7 +124,11 @@ const Warenkorb = () => {
         setError(`${errors[0]}\n${errors[1]}\n${errors[2]}`);
       }
     } else {
-      checkoutStore.sendtoDb(checkoutStore.checkoutProducts, time);
+      checkoutStore.sendOrderToDb(
+        toJS(checkoutStore.checkoutProducts),
+        time,
+        authStore.loggedInUser
+      );
       setError("");
     }
   };
@@ -244,7 +249,6 @@ const Warenkorb = () => {
           </div>
           <div className="errorWarenkorb">{error}</div>
         </div>
-
         <Footer />
       </div>
     </>

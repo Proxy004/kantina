@@ -6,7 +6,7 @@ import axios from "axios";
 export class AuthStore {
   private accessToken: any = undefined;
   private idToken: any = undefined;
-
+  @observable loggedInUser: string = "";
   @observable
   publicClient: Msal.PublicClientApplication = new Msal.PublicClientApplication(
     msalConfig
@@ -43,11 +43,12 @@ export class AuthStore {
         const splittedMail = loggedInAccountName.split("@");
         if (splittedMail[1] === "hak-bregenz.at") {
           this.setLogIn(true);
+          this.loggedInUser = loggedInAccountName;
           await axios.post(
-            `${`${process.env.REACT_APP_API_URL}/user/login` || ""}`,
+            `${`${process.env.REACT_APP_API_URL}/user/loginUser` || ""}`,
             {
               name: this.idToken.idTokenClaims.name,
-              mail: loggedInAccountName,
+              email: loggedInAccountName,
             },
             { headers: { "Content-Type": "application/json" } }
           );
