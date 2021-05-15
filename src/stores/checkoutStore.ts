@@ -12,11 +12,12 @@ export class CheckoutStore {
   @action getLengthOfArry = () => {
     this.lengthOfArry = 0;
     this.checkoutProducts.forEach((e) => {
-      this.lengthOfArry += e.quantity;
+      this.lengthOfArry += e.quantity + 1;
     });
   };
   @action clearWarenkorb = () => {
     this.checkoutProducts.length = 0;
+    this.lengthOfArry = 0;
   };
   @action addProduct = (product: Produkt) => {
     this.getLengthOfArry();
@@ -34,6 +35,7 @@ export class CheckoutStore {
       this.checkoutProducts.push({ ...product, quantity: 1 });
     }
   };
+
   @action sendOrderToDb(
     product: IObservableArray<CheckoutProduct>,
     time: string,

@@ -30,13 +30,23 @@ export class AuthStore {
     localStorage.clear();
   };
 
+  @action setAdmin: (admin: any) => void = (admin: any) => {
+    if (admin[0].mitarbeiter === 1) {
+      this.isAdmin = true;
+    } else {
+      this.isAdmin = false;
+    }
+  };
+
+  @observable isAdmin: boolean = false;
+
   @action login(request: Msal.PopupRequest) {
     (async () => {
       try {
         //getfrommicrosoft
         this.idToken = await this.publicClient.loginPopup(request);
-        const loggedInAccountName: string = this.idToken.idTokenClaims
-          .preferred_username;
+        const loggedInAccountName: string =
+          this.idToken.idTokenClaims.preferred_username;
         request.account =
           this.publicClient.getAccountByUsername(loggedInAccountName) ||
           undefined;
@@ -52,6 +62,19 @@ export class AuthStore {
             },
             { headers: { "Content-Type": "application/json" } }
           );
+
+          try {
+            await axios
+              .get(
+                `${`${process.env.REACT_APP_API_URL}/user/checkIfAdmin` || ""}`,
+                { headers: { email: this.loggedInUser } }
+              )
+              .then((res) => {
+                this.setAdmin(res.data);
+              });
+          } catch (err) {
+            console.log(err);
+          }
         } else {
           throw new Error("Jesus Christ use your HAK Mail!");
         }
@@ -80,6 +103,7 @@ export class AuthStore {
       }
     })();
   }
+
   /*
   @action getInfos(request: Msal.SilentRequest) {
     (async () => {
@@ -109,7 +133,7 @@ export class AuthStore {
       return false;
     }
     return (
-      //error codes für failes silent request
+      //error codes  failes silent request
       errorCode === "consent_required" ||
       errorCode === "interaction_required" ||
       errorCode === "login_required"

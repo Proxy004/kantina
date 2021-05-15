@@ -1,0 +1,70 @@
+.adminAll {
+  max-height: 1080px;
+  max-width: 1920px;
+  margin-left: 5%;
+}
+
+.adminTitle {
+  font-weight: 600;
+  font-size: 2rem;
+  margin-top: 3%;
+  margin-bottom: 5%;
+}
+.adminOrderName {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+.adminOrder {
+  display: grid;
+  grid-template-columns: 50% 100px 100px 450px 500px;
+  grid-template-rows: auto;
+}
+.adminOrderName {
+  grid-row: 1;
+  grid-column: 1;
+}
+.adminTitelQuantity {
+  justify-self: center;
+  font-weight: 600;
+  grid-row: 1;
+  grid-column: 2;
+}
+.adminTitelPrice {
+  justify-self: center;
+  font-weight: 600;
+  grid-row: 1;
+  grid-column: 3;
+}
+.adminTitelTime {
+  justify-self: left;
+  font-weight: 600;
+  grid-row: 1;
+  grid-column: 4;
+}
+.adminTitelReady {
+  justify-self: center;
+  font-weight: 600;
+  grid-row: 1;
+  grid-column: 5;
+}
+.adminOrderTime {
+  grid-area: 2 / col1-start / last-line / 4;
+}
+.adminArticleTitle {
+  grid-row: auto;
+  grid-column: 1;
+}
+.adminArticleQuantity {
+  justify-self: center;
+  grid-row: auto;
+  grid-column: 2;
+}
+.adminArticlePrice {
+  justify-self: center;
+  grid-row: auto;
+  grid-column: 3;
+}
+.adminOrderReady {
+  justify-self: center;
+  grid-area: 2 / col1-start / last-line / 5;
+}
