@@ -1,7 +1,9 @@
+@import "../../styles/color.scss";
 .adminAll {
-  max-height: 1080px;
+  max-height: 750px;
   max-width: 1920px;
   margin-left: 5%;
+  overflow: hidden;
 }
 
 .adminTitle {
@@ -12,22 +14,54 @@
 }
 .adminOrderName {
   font-weight: 600;
+  padding-bottom: 1%;
   font-size: 1.5rem;
 }
 .adminOrder {
   display: grid;
-  grid-template-columns: 50% 100px 100px 450px 500px;
+  grid-template-columns: 50% 100px 100px 450px 2%;
   grid-template-rows: auto;
+  margin-bottom: 2%;
+}
+.iconOrderChecked {
+  margin-right: 15%;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.iconOrderChecked1 {
+  color: $Green;
+  margin-right: 15%;
+  font-size: 2rem;
+}
+.iconOrderNotChecked2 {
+  font-size: 2rem;
 }
 .adminOrderName {
   grid-row: 1;
   grid-column: 1;
+}
+.adminNoOrders {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: -4%;
+}
+.adminTitleNoOrders {
+  color: $Green;
+  font-size: 2rem;
+  margin-top: -3%;
+  font-weight: 600;
 }
 .adminTitelQuantity {
   justify-self: center;
   font-weight: 600;
   grid-row: 1;
   grid-column: 2;
+}
+.iconOrderNotChecked {
+  font-size: 2rem;
+  color: red;
 }
 .adminTitelPrice {
   justify-self: center;
@@ -42,12 +76,13 @@
   grid-column: 4;
 }
 .adminTitelReady {
-  justify-self: center;
+  justify-self: left;
   font-weight: 600;
   grid-row: 1;
   grid-column: 5;
 }
 .adminOrderTime {
+  justify-self: left;
   grid-area: 2 / col1-start / last-line / 4;
 }
 .adminArticleTitle {
@@ -65,6 +100,7 @@
   grid-column: 3;
 }
 .adminOrderReady {
-  justify-self: center;
-  grid-area: 2 / col1-start / last-line / 5;
+  justify-self: left;
+  place-self: center stretch;
+  grid-area: 5 / col1-start / last-line / 5;
 }

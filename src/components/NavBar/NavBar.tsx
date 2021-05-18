@@ -15,6 +15,7 @@ import Profile from "../Profile/Profil";
 import { Link } from "react-router-dom";
 import { checkoutStore } from "../../stores/checkoutStore";
 import { authStore } from "../../stores/authStore";
+
 const NavBar = () => {
   return (
     <div className="allDiv">

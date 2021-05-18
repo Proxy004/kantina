@@ -9,12 +9,14 @@ import { authStore } from "./stores/authStore";
 import { menuStore } from "./stores/menuStore";
 import { checkoutStore } from "./stores/checkoutStore";
 import { productStore } from "./stores/productStore";
+import { invoiceStore } from "./stores/invoiceStore";
 
 const stores = {
   authStore,
   menuStore,
   checkoutStore,
   productStore,
+  invoiceStore,
 };
 
 require("dotenv").config();
