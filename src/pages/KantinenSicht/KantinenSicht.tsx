@@ -6,7 +6,7 @@ import "./KantinenSicht.scss";
 import { Order } from "../../models/Order";
 import { OrderProducts } from "../../models/OrderProducts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { inject, observer } from "mobx-react";
 import { toJS } from "mobx";
 import gsap from "gsap";
@@ -69,12 +69,12 @@ const KantinenSicht = () => {
       await invoiceStore.getOrders();
       toJS(invoiceStore.orders)
         .slice(showOrdersStart, showOrdersEnd)
-        .map((filteredProduct: Order) => {
+        .forEach((filteredProduct: Order) => {
           all = filteredProduct.bestellung_id;
         });
       await invoiceStore.getProductsOfOrder(all);
     })();
-  }, []);
+  }, [showOrdersEnd, showOrdersStart]);
 
   return (
     <div>
@@ -120,23 +120,19 @@ const KantinenSicht = () => {
                         }}
                         className={"iconOrderChecked"}
                       />
-                      <FontAwesomeIcon
-                        icon={faTimes}
-                        className={"iconOrderNotChecked"}
-                      />
                     </div>
 
                     {invoiceStore.invoiceProducts.map(
-                      (orderProducts: OrderProducts) => {
+                      (orderProducts: OrderProducts, j: number) => {
                         return (
                           <>
-                            <div className="adminArticleTitle">
+                            <div className="adminArticleTitle" key={j}>
                               {orderProducts.bezeichnung}
                             </div>
-                            <div className="adminArticleQuantity">
+                            <div className="adminArticleQuantity" key={j}>
                               {orderProducts.menge}
                             </div>
-                            <div className="adminArticlePrice">
+                            <div className="adminArticlePrice" key={j}>
                               € {orderProducts.preis.toFixed(2)}
                             </div>
                           </>

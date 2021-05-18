@@ -27,15 +27,10 @@
   margin-right: 15%;
   font-size: 2rem;
   cursor: pointer;
-}
-.iconOrderChecked1 {
   color: $Green;
-  margin-right: 15%;
-  font-size: 2rem;
+  margin-left: 30px;
 }
-.iconOrderNotChecked2 {
-  font-size: 2rem;
-}
+
 .adminOrderName {
   grid-row: 1;
   grid-column: 1;
@@ -59,10 +54,7 @@
   grid-row: 1;
   grid-column: 2;
 }
-.iconOrderNotChecked {
-  font-size: 2rem;
-  color: red;
-}
+
 .adminTitelPrice {
   justify-self: center;
   font-weight: 600;
