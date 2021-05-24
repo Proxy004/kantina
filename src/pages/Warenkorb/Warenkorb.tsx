@@ -159,25 +159,26 @@ const Warenkorb = () => {
                           <div className="quantityWarenkorb">
                             <FontAwesomeIcon
                               icon={faMinusCircle}
-                              className="plusWarenkorb"
+                              className="minusWarenkorb"
                               onClick={() => {
                                 checkoutStore.decreaseAmount(filteredProduct);
-                                forceUpdate();
                                 updateLength();
                                 updateWarenkorbSum();
+
+                                forceUpdate();
                               }}
                             />
-
                             <span className="quantityWarenkorb">
                               {filteredProduct.quantity}
                             </span>
                             <FontAwesomeIcon
                               icon={faPlusCircle}
-                              className="minusWarenkorb"
+                              className="plusWarenkorb"
                               onClick={() => {
                                 checkoutStore.increaseAmount(filteredProduct);
-                                forceUpdate();
                                 updateWarenkorbSum();
+
+                                forceUpdate();
                               }}
                             />
                           </div>
