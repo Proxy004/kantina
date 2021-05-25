@@ -40,7 +40,7 @@ const NavBar = () => {
             <span className={"fa-layers fa-fw "}>
               <FontAwesomeIcon icon={faShoppingCart} />
               <span className={"fa-layers-counter"}>
-                {checkoutStore.lengthOfArry}
+                {checkoutStore.lengthOfArray}
               </span>
             </span>
           </Link>
@@ -67,4 +67,8 @@ const NavBar = () => {
   );
 };
 
-export default inject("menuStore", "authStore")(observer(NavBar));
+export default inject(
+  "menuStore",
+  "authStore",
+  "checkoutStore"
+)(observer(NavBar));

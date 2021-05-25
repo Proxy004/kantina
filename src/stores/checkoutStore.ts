@@ -8,19 +8,11 @@ export class CheckoutStore {
   checkoutProducts: IObservableArray<CheckoutProduct> = observable.array<CheckoutProduct>(
     []
   );
-  @observable lengthOfArry: number = 0;
-  @action getLengthOfArry = () => {
-    this.lengthOfArry = 0;
-    this.checkoutProducts.forEach((e) => {
-      this.lengthOfArry += e.quantity + 1;
-    });
-  };
   @action clearWarenkorb = () => {
     this.checkoutProducts.length = 0;
-    this.lengthOfArry = 0;
+    this.updateNavBar();
   };
   @action addProduct = (product: Produkt) => {
-    this.getLengthOfArry();
     if (
       this.checkoutProducts.some(
         (p: CheckoutProduct) => p.produkt_id === product.produkt_id
@@ -34,6 +26,7 @@ export class CheckoutStore {
     } else {
       this.checkoutProducts.push({ ...product, quantity: 1 });
     }
+    this.updateNavBar();
   };
 
   @action sendOrderToDb(
@@ -49,15 +42,19 @@ export class CheckoutStore {
             product,
             time,
             email,
-          },
-          { headers: { "Content-Type": "application/json" } }
+          }
         );
       } catch (err) {}
     })();
   }
-
+  @observable lengthOfArray: number = 0;
+  @action updateNavBar = () => {
+    this.lengthOfArray = 0;
+    checkoutStore.checkoutProducts.forEach((e) => {
+      this.lengthOfArray += e.quantity;
+    });
+  };
   @action decreaseAmount = (product: CheckoutProduct) => {
-    this.getLengthOfArry();
     if (product.quantity > 1) {
       this.checkoutProducts[
         this.checkoutProducts.findIndex(
@@ -71,14 +68,15 @@ export class CheckoutStore {
         )
       );
     }
+    this.updateNavBar();
   };
   @action increaseAmount = (product: CheckoutProduct) => {
-    this.getLengthOfArry();
     this.checkoutProducts[
       this.checkoutProducts.findIndex(
         (p: CheckoutProduct) => p.produkt_id === product.produkt_id
       )
     ].quantity += 1;
+    this.updateNavBar();
   };
   @action deleteProduct = (i: number) => {
     try {
@@ -86,6 +84,7 @@ export class CheckoutStore {
     } catch (err) {
       return "ERROR " + err;
     }
+    this.updateNavBar();
   };
   constructor() {
     makeAutoObservable(this);

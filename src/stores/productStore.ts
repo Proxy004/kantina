@@ -9,7 +9,7 @@ export class ProductStore {
     (async () => {
       try {
         await axios
-          .get(`${`${process.env.REACT_APP_API_URL}/products` || ""}`)
+          .get(`${process.env.REACT_APP_API_URL}/products` || "")
           .then((res) => {
             this.setProducts(res.data);
           });

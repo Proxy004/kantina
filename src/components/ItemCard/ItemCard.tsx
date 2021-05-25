@@ -33,19 +33,17 @@ const ItemCard = (props: { product: Produkt }) => {
               className="title"
             >
               <Ticker speed={9} mode={"await"} move={isHovered}>
-                {() => <>{props.product.bezeichnung}</>}
+                {() => props.product.bezeichnung}
               </Ticker>
             </Link>
           ) : (
-            <>
-              <Link
-                to={`/produktdetail/${props.product.urlPfad}`}
-                onMouseEnter={() => AnimatonEnter()}
-                className="title"
-              >
-                {props.product.bezeichnung}
-              </Link>
-            </>
+            <Link
+              to={`/produktdetail/${props.product.urlPfad}`}
+              onMouseEnter={() => AnimatonEnter()}
+              className="title"
+            >
+              {props.product.bezeichnung}
+            </Link>
           )}
           <div className="price">€ {props.product.preis.toFixed(2)}</div>
           <div className="mwst">inkl. MwSt</div>

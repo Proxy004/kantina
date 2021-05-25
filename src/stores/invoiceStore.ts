@@ -61,7 +61,7 @@ export class InvoiceStore {
       }
     })();
   };
-  @action deleteProduct = (i: number) => {
+  @action deleteOrder = (i: number) => {
     try {
       this.orders.splice(i, 1);
     } catch (err) {

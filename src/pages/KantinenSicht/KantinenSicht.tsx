@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import { invoiceStore } from "../../stores/invoiceStore";
@@ -12,8 +12,7 @@ import { toJS } from "mobx";
 import gsap from "gsap";
 import Animation from "./AnimationEmptyAdmin/AnimationOrderCompleted";
 const KantinenSicht = () => {
-  const [showOrdersStart, setShowOrdersStart] = useState(0);
-  const [showOrdersEnd, setShowOrdersEnd] = useState(1);
+  let quantitySum: number = 0;
 
   useEffect(() => {
     gsap.fromTo(
@@ -35,6 +34,12 @@ const KantinenSicht = () => {
       { x: 0, opacity: 1, stagger: 0.1 }
     );
     gsap.fromTo(
+      ".orderFullPrice",
+      1,
+      { x: 50, opacity: 0 },
+      { x: 0, opacity: 1, stagger: 0.1 }
+    );
+    gsap.fromTo(
       ".adminOrderTime",
       1,
       { x: 50, opacity: 0 },
@@ -46,103 +51,88 @@ const KantinenSicht = () => {
       { x: 50, opacity: 0 },
       { x: 0, opacity: 1, stagger: 0.1 }
     );
-    gsap.fromTo(
-      ".iconOrderNotChecked",
-      1,
-      { x: 50, opacity: 0 },
-      { x: 0, opacity: 1, stagger: 0.1 }
-    );
-    gsap.fromTo(
-      ".iconOrderChecked1",
-      5,
-      { x: 50, opacity: 1 },
-      { x: 0, opacity: 0 }
-    );
-    gsap.fromTo(
-      ".iconOrderNotChecked1",
-      5,
-      { x: 50, opacity: 1 },
-      { x: 0, opacity: 0 }
-    );
+
     (async () => {
       let all: any;
       await invoiceStore.getOrders();
       toJS(invoiceStore.orders)
-        .slice(showOrdersStart, showOrdersEnd)
+        .slice(0, 1)
         .forEach((filteredProduct: Order) => {
           all = filteredProduct.bestellung_id;
         });
+
       await invoiceStore.getProductsOfOrder(all);
     })();
-  }, [showOrdersEnd, showOrdersStart]);
-
+    console.log(toJS(invoiceStore.invoiceProducts));
+    console.log(toJS(invoiceStore.orders));
+  }, []);
   return (
     <div>
       <NavBar />
       <div className={"adminAll"}>
         <div className="adminTitle">Bestellübersicht</div>
         {invoiceStore.orders.length >= 1 ? (
-          invoiceStore.orders
-            .slice(showOrdersStart, showOrdersEnd)
-            .map((order: Order, i: number) => {
-              let time: Date = order.abholzeit;
-              let time1: string[];
-              let time2: string[];
+          invoiceStore.orders.slice(0, 1).map((order: Order, i: number) => {
+            let time: Date = order.abholzeit;
+            let time1: string[];
+            let time2: string[];
 
-              time1 = time.toString().split("T");
-              time2 = time1[1].split(".");
+            time1 = time.toString().split("T");
+            time2 = time1[1].split(".");
 
-              return (
-                <div key={i}>
-                  <div className="adminOrder">
-                    <div className="adminOrderName">
-                      Bestellung {order.bestellung_id} - {order.vorname}{" "}
-                      {order.nachname}
-                    </div>
-                    <div className={"adminTitelQuantity"}>Menge</div>
-                    <div className={"adminTitelPrice"}>Preis</div>
-                    <div className={"adminTitelTime"}>Abholzeit</div>
-                    <div className={"adminTitelReady"}>Fertig?</div>
-                    <div className={"adminOrderTime"}>
-                      {time2[0].slice(0, 5)}
-                    </div>
-                    <div className={"adminOrderReady"}>
-                      <FontAwesomeIcon
-                        icon={faCheck}
-                        onClick={() => {
-                          invoiceStore.setOrderChecked(order.bestellung_id);
-                          setShowOrdersEnd(showOrdersEnd + 1);
-                          setShowOrdersStart(showOrdersStart + 1);
-                          invoiceStore.getProductsOfOrder(
-                            order.bestellung_id + 1
-                          );
-                          invoiceStore.deleteProduct(i);
-                        }}
-                        className={"iconOrderChecked"}
-                      />
-                    </div>
-
-                    {invoiceStore.invoiceProducts.map(
-                      (orderProducts: OrderProducts, j: number) => {
-                        return (
-                          <>
-                            <div className="adminArticleTitle" key={j}>
-                              {orderProducts.bezeichnung}
-                            </div>
-                            <div className="adminArticleQuantity" key={j}>
-                              {orderProducts.menge}
-                            </div>
-                            <div className="adminArticlePrice" key={j}>
-                              € {orderProducts.preis.toFixed(2)}
-                            </div>
-                          </>
-                        );
-                      }
-                    )}
-                  </div>
+            return (
+              <div key={i}>
+                <div className="adminSecondTitle">
+                  Deine nächste Bestellung ist:
                 </div>
-              );
-            })
+                <div className="adminOrder">
+                  <div className="adminOrderName">
+                    Bestellung {order.bestellung_id} - {order.vorname}{" "}
+                    {order.nachname}
+                  </div>
+                  <div className={"adminTitelQuantity"}>Menge</div>
+                  <div className={"adminTitelPrice"}>Preis</div>
+                  <div className={"adminTitelTime"}>Abholzeit</div>
+                  <div className={"adminTitelReady"}>Fertig?</div>
+                  <div className={"adminOrderTime"}>{time2[0].slice(0, 5)}</div>
+                  <div className={"adminOrderReady"}>
+                    <FontAwesomeIcon
+                      icon={faCheck}
+                      onClick={() => {
+                        invoiceStore.setOrderChecked(order.bestellung_id);
+                        invoiceStore.deleteOrder(i);
+                      }}
+                      className={"iconOrderChecked"}
+                    />
+                  </div>
+                  {toJS(invoiceStore.invoiceProducts).map(
+                    (orderProducts: OrderProducts, i: number) => {
+                      quantitySum += orderProducts.menge;
+                      return (
+                        <>
+                          <div className="adminArticleTitle">
+                            {orderProducts.bezeichnung}
+                          </div>
+                          <div className="adminArticleQuantity">
+                            {orderProducts.menge}
+                          </div>
+                          <div className="adminArticlePrice">
+                            €{" "}
+                            {(
+                              orderProducts.preis * orderProducts.menge
+                            ).toFixed(2)}
+                          </div>
+                        </>
+                      );
+                    }
+                  )}
+                  <div className="orderSum"> Zusammenfassung</div>
+                  <div className="sumQuantity">{quantitySum} </div>
+                  <div className="orderFullPrice"> € {order.gesamtpreis}</div>
+                </div>
+              </div>
+            );
+          })
         ) : (
           <div className="adminNoOrders">
             <Animation />
