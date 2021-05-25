@@ -79,7 +79,7 @@ const ProduktÜbersicht: React.FC<ProduktÜbersichtProps> = ({
           )}
 
           <div className="productAllergenes">
-            {productDetailInfos.allergene}
+            {productDetailInfos.allergene} *
           </div>
           <div className="productTextBot">
             <div className="productIngredients">
@@ -115,11 +115,10 @@ const ProduktÜbersicht: React.FC<ProduktÜbersichtProps> = ({
               Jetzt kaufen
             </div>
           </div>
-
           <div className="productMore">
             *Für mehr Informationen zu Allergenen in unseren Produkten klicken
             Sie{" "}
-            <Link to>
+            <Link to={"/allergene"}>
               <span className="productThis">hier</span>.
             </Link>
           </div>
