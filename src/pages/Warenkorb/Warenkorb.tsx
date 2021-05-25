@@ -14,7 +14,7 @@ import "./Warenkorb.scss";
 import { toJS } from "mobx";
 import gsap from "gsap";
 import { authStore } from "../../stores/authStore";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 const Warenkorb = () => {
   const [sumProducts, setSumProducts] = useState(0);
@@ -122,7 +122,11 @@ const Warenkorb = () => {
         time.trim() === "" &&
         checkoutStore.checkoutProducts.length < 1
       ) {
-        setError(`${errors[0]}\n${errors[1]}\n${errors[2]}`);
+        setError(`${errors[0]}\n${errors[1]}\n${errors[2]}\n${errors[3]}`);
+      }
+      if (Date.parse(time) <= Date.now() && !checked) {
+        console.log("dasd");
+        setError(`${errors[3]}\n${errors[0]}`);
       }
     } else {
       checkoutStore.sendOrderToDb(
@@ -240,8 +244,11 @@ const Warenkorb = () => {
           </div>
 
           <div className="agbWarenkorb">
-            <input type="checkbox" onChange={setAgb} /> Ich habe die AGB gelesen
-            und akzeptiere diese.
+            <input type="checkbox" onChange={setAgb} /> Ich habe die{" "}
+            <Link className="agbClickWarenkorb" to={"/agb"}>
+              AGB
+            </Link>{" "}
+            gelesen und akzeptiere diese.
           </div>
           <div
             className="orderWarenkorb"

@@ -20,6 +20,9 @@ import Vegan from "./pages/Vegan/Vegan";
 import Warenkorb from "./pages/Warenkorb/Warenkorb";
 import OrderCompleted from "./pages/OrderCompleted/OrderCompleted";
 import Admin from "./pages/KantinenSicht/KantinenSicht";
+import Agb from "./pages/Agb/Agb";
+import Allergene from "./pages/Allergene/Allergene";
+
 //store
 import { AuthStore } from "./stores/authStore";
 
@@ -35,6 +38,8 @@ const pages = {
   warenkorb: Warenkorb,
   orderCompleted: OrderCompleted,
   admin: Admin,
+  agb: Agb,
+  allergene: Allergene,
 };
 
 interface AppProps {
@@ -143,6 +148,24 @@ const App = ({ authStore }: AppProps) => {
             component={
               authStore?.loggedIn
                 ? () => <pages.orderCompleted></pages.orderCompleted>
+                : () => <Redirect to="/login"></Redirect>
+            }
+          ></Route>
+          <Route
+            exact
+            path="/agb"
+            component={
+              authStore?.loggedIn
+                ? () => <pages.agb></pages.agb>
+                : () => <Redirect to="/login"></Redirect>
+            }
+          ></Route>
+          <Route
+            exact
+            path="/allergene"
+            component={
+              authStore?.loggedIn
+                ? () => <pages.allergene></pages.allergene>
                 : () => <Redirect to="/login"></Redirect>
             }
           ></Route>
