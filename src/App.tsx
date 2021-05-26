@@ -22,6 +22,7 @@ import OrderCompleted from "./pages/OrderCompleted/OrderCompleted";
 import Admin from "./pages/KantinenSicht/KantinenSicht";
 import Agb from "./pages/Agb/Agb";
 import Allergene from "./pages/Allergene/Allergene";
+import Impressum from "./pages/Impressum/Impressum";
 
 //store
 import { AuthStore } from "./stores/authStore";
@@ -40,6 +41,7 @@ const pages = {
   admin: Admin,
   agb: Agb,
   allergene: Allergene,
+  impressum: Impressum,
 };
 
 interface AppProps {
@@ -166,6 +168,15 @@ const App = ({ authStore }: AppProps) => {
             component={
               authStore?.loggedIn
                 ? () => <pages.allergene></pages.allergene>
+                : () => <Redirect to="/login"></Redirect>
+            }
+          ></Route>
+          <Route
+            exact
+            path="/impressum"
+            component={
+              authStore?.loggedIn
+                ? () => <pages.impressum></pages.impressum>
                 : () => <Redirect to="/login"></Redirect>
             }
           ></Route>

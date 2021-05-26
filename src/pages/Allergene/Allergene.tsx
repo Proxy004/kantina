@@ -7,7 +7,27 @@ const Allergene = () => {
   return (
     <>
       <NavBar />
-      <div className="allAllergene">Allergene</div>
+      <div className="allAllergene">
+        <span className="titleAllergene">Allergene</span>
+        <div className="listAllergene">
+          <ul>
+            <li>A: Gluten</li>
+            <li>B: Krebstiere</li>
+            <li>C: Eier von Geflügel</li>
+            <li>D: Fisch</li>
+            <li>E: Erdnüsse</li>
+            <li>F: Sojabohnen</li>
+            <li>G: Milch von Säugetieren</li>
+            <li>H: Schalenfrüchte</li>
+            <li>L: Sellerie</li>
+            <li>M: Senf</li>
+            <li>N: Sesamsamen</li>
+            <li>O: Schwefeloxid und Sulfite</li>
+            <li>P: Lupinen</li>
+            <li>R: Weichtiere</li>
+          </ul>
+        </div>
+      </div>
       <Footer />
     </>
   );
