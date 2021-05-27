@@ -106,23 +106,75 @@ const Agb = () => {
             nationale Gesetze zur Anwendung kommen, informieren wir Sie in den
             folgenden Abschnitten darüber.
           </p>
+          <span className="contentHeadlineAgb">Speicherdauer</span>
+          <p>
+            Dass wir personenbezogene Daten nur so lange speichern, wie es für
+            die Bereitstellung unserer Dienstleistungen und Produkte unbedingt
+            notwendig ist, gilt als generelles Kriterium bei uns. Wenn es zum
+            Beispiel im Fall von Buchhaltung gesetzlich vorgeschrieben ist, kann
+            diese Speicherdauer auch überschritten werden. Das bedeutet, dass
+            wir personenbezogene Daten löschen, sobald der Grund für die
+            Datenverarbeitung nicht mehr vorhanden ist. Sollten Sie die Löschung
+            Ihrer Daten wünschen oder die Einwilligung zur Datenverarbeitung
+            widerrufen, werden die Daten so rasch wie möglich und soweit keine
+            Pflicht zur Speicherung besteht, gelöscht.
+          </p>
+
           <span className="contentHeadlineAgb">
-            Kontaktdaten des Verantwortlichen
+            Rechte laut Datenschutzgrundverordnung
           </span>
           <p>
-            Sollten Sie Fragen zum Datenschutz haben, finden Sie nachfolgend die
-            Kontaktdaten der verantwortlichen Person bzw. Stelle. <br />
-          </p>
-          <p>
-            Kantina GmbH <br />
-            Hinterfeldgasse 19, 6900 Bregenz <br />
-            6900 Bregenz <br />
-          </p>
-          <p>
-            Vertretungsberechtigt: <br />
-            Gebhard Strohmaier <br />
-            E-Mail: info@kantina.com <br />
-            Telefon: +43 5569 26530
+            Laut Artikel 13 DSGVO stehen Ihnen die folgenden Rechte zu, damit es
+            zu einer fairen und transparenten Verarbeitung von Daten kommt: Sie
+            haben laut Artikel 15 DSGVO ein Auskunftsrecht darüber, ob wir Daten
+            von Ihnen verarbeiten. Sollte das zutreffen, haben Sie Recht darauf
+            eine Kopie der Daten zu erhalten und die folgenden Informationen zu
+            erfahren: zu welchem Zweck wir die Verarbeitung durchführen; die
+            Kategorien, also die Arten von Daten, die verarbeitet werden; wer
+            diese Daten erhält und wenn die Daten an Drittländer übermittelt
+            werden, wie die Sicherheit garantiert werden kann; wie lange die
+            Daten gespeichert werden; das Bestehen des Rechts auf Berichtigung,
+            Löschung oder Einschränkung der Verarbeitung und dem
+            Widerspruchsrecht gegen die Verarbeitung; dass Sie sich bei einer
+            Aufsichtsbehörde beschweren können (Links zu diesen Behörden finden
+            Sie weiter unten); die Herkunft der Daten, wenn wir sie nicht bei
+            Ihnen erhoben haben; ob Profiling durchgeführt wird, ob also Daten
+            automatisch ausgewertet werden, um zu einem persönlichen Profil von
+            Ihnen zu gelangen. Sie haben laut Artikel 16 DSGVO ein Recht auf
+            Berichtigung der Daten, was bedeutet, dass wir Daten richtig stellen
+            müssen, falls Sie Fehler finden. Sie haben laut Artikel 17 DSGVO das
+            Recht auf Löschung („Recht auf Vergessenwerden“), was konkret
+            bedeutet, dass Sie die Löschung Ihrer Daten verlangen dürfen. Sie
+            haben laut Artikel 18 DSGVO das Recht auf Einschränkung der
+            Verarbeitung, was bedeutet, dass wir die Daten nur mehr speichern
+            dürfen aber nicht weiter verwenden. Sie haben laut Artikel 19 DSGVO
+            das Recht auf Datenübertragbarkeit, was bedeutet, dass wir Ihnen auf
+            Anfrage Ihre Daten in einem gängigen Format zur Verfügung stellen.
+            Sie haben laut Artikel 21 DSGVO ein Widerspruchsrecht, welches nach
+            Durchsetzung eine Änderung der Verarbeitung mit sich bringt. Wenn
+            die Verarbeitung Ihrer Daten auf Artikel 6 Abs. 1 lit. e
+            (öffentliches Interesse, Ausübung öffentlicher Gewalt) oder Artikel
+            6 Abs. 1 lit. f (berechtigtes Interesse) basiert, können Sie gegen
+            die Verarbeitung Widerspruch einlegen. Wir prüfen danach so rasch
+            wie möglich, ob wir diesem Widerspruch rechtlich nachkommen können.
+            Werden Daten verwendet, um Direktwerbung zu betreiben, können Sie
+            jederzeit gegen diese Art der Datenverarbeitung widersprechen. Wir
+            dürfen Ihre Daten danach nicht mehr für Direktmarketing verwenden.
+            Werden Daten verwendet, um Profiling zu betreiben, können Sie
+            jederzeit gegen diese Art der Datenverarbeitung widersprechen. Wir
+            dürfen Ihre Daten danach nicht mehr für Profiling verwenden. Sie
+            haben laut Artikel 22 DSGVO unter Umständen das Recht, nicht einer
+            ausschließlich auf einer automatisierten Verarbeitung (zum Beispiel
+            Profiling) beruhenden Entscheidung unterworfen zu werden. Wenn Sie
+            glauben, dass die Verarbeitung Ihrer Daten gegen das
+            Datenschutzrecht verstößt oder Ihre datenschutzrechtlichen Ansprüche
+            in sonst einer Weise verletzt worden sind, können Sie sich bei der
+            Aufsichtsbehörde beschweren. Diese ist für Österreich die
+            Datenschutzbehörde, deren Website Sie unter https://www.dsb.gv.at/
+            finden und für Deutschland können Sie sich an die Bundesbeauftragte
+            für den Datenschutz und die Informationsfreiheit (BfDI) wenden. Kurz
+            gesagt: Sie haben Rechte – zögern Sie nicht, die oben gelistete
+            verantwortliche Stelle bei uns zu kontaktieren!
           </p>
         </div>
       </div>
