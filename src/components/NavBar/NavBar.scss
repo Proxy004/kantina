@@ -17,11 +17,11 @@
   justify-content: center;
   align-items: center;
   position: fixed;
-  height: 80%;
+  height: 79%;
   width: 100vw;
   background-color: white;
   z-index: 999999;
-  margin-top: 6.1%;
+  margin-top: 6.4%;
 }
 .menuOpenTrue {
   left: 0px;
@@ -68,8 +68,8 @@
   margin-right: 5.2%;
 }
 .allDiv {
+  padding-bottom: 8%;
   max-width: 1920px;
-  margin-bottom: 10%;
 }
 .cart {
   color: $Green;
