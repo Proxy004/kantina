@@ -1,22 +1,27 @@
 @import "../../styles/color.scss";
 
 .menu {
-  margin-top: 1vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 90px;
+  background-color: white;
+  position: fixed;
+  margin-left: 5%;
+  width: 90%;
 }
 .menuOpen {
   transition: all 0.5s linear;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  height: 75vh;
+  position: fixed;
+  height: 80%;
   width: 100vw;
   background-color: white;
   z-index: 999999;
+  margin-top: 6.1%;
 }
 .menuOpenTrue {
   left: 0px;
@@ -27,17 +32,17 @@
 .profileActive {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  transition: all 0.2s ease-in;
-  right: 5.7vw;
-  position: absolute;
-  margin: -20px;
+  align-items: flex-end;
+  width: 100%;
+  right: 3%;
 }
 .profileActiveFalse {
   opacity: 0;
   top: 110px;
+  display: none;
 }
 .profileActiveTrue {
+  position: fixed;
   top: 120px;
   opacity: 1;
 }
@@ -45,14 +50,14 @@
   color: $Green;
   list-style: none;
   font-size: 3rem;
-  margin-right: 2%;
+  padding-right: 1.5%;
   cursor: pointer;
   text-decoration: none;
 }
 .menuPoint:first-child {
   font-size: 6rem;
   font-weight: 900;
-  margin-right: auto;
+  padding-right: 65%;
 }
 .menuPoint:last-child {
   margin-right: 5vw;
@@ -60,8 +65,12 @@
 .arrowUp {
   font-size: 2rem;
   color: $Green;
+  margin-right: 5.2%;
 }
-
+.allDiv {
+  max-width: 1920px;
+  margin-bottom: 10%;
+}
 .cart {
   color: $Green;
 }
