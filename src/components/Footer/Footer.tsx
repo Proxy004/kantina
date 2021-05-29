@@ -10,10 +10,12 @@ const Footer = () => {
         <div className="item">Impressum</div>
       </Link>
       <div className="copyK">2021 © Kantina</div>
-      <div className="item">
-        Powered by
-        <img src={Athenic} alt="Powered by Athenic" />
-      </div>
+      <a href={"https://reverent-hugle-c18bb2.netlify.app/"}>
+        <div className="item">
+          Powered by
+          <img src={Athenic} alt="Powered by Athenic" />
+        </div>
+      </a>
     </div>
   );
 };
