@@ -20,8 +20,8 @@
   height: 79%;
   width: 100vw;
   background-color: white;
-  z-index: 999999;
-  margin-top: 6.4%;
+  z-index: 1;
+  margin-top: 6.3%;
 }
 .menuOpenTrue {
   left: 0px;
@@ -35,16 +35,14 @@
   align-items: flex-end;
   width: 100%;
   right: 3%;
+  top: 10%;
+  z-index: 2;
 }
 .profileActiveFalse {
-  opacity: 0;
-  top: 110px;
   display: none;
 }
 .profileActiveTrue {
   position: fixed;
-  top: 120px;
-  opacity: 1;
 }
 .menuPoint {
   color: $Green;

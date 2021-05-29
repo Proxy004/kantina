@@ -1,6 +1,7 @@
 import { observable, action, makeAutoObservable, IObservableArray } from "mobx";
 import { Order } from "../models/Order";
 import { OrderProducts } from "../models/OrderProducts";
+import { authStore } from "../stores/authStore";
 
 import axios from "axios";
 
@@ -47,14 +48,16 @@ export class InvoiceStore {
       console.log(err);
     }
   };
-  @action setOrderChecked = (orderID: number) => {
+  @action setOrderChecked = (orderID: number, emailUser: string) => {
     (async () => {
       try {
         await axios.post(
-          `${
-            `${process.env.REACT_APP_API_URL}/orders/setOrderClosed/${orderID}` ||
-            ""
-          }`
+          `${process.env.REACT_APP_API_URL}/orders/setOrderClosed/${orderID}`,
+          {
+            email: emailUser,
+            loginDate: authStore.idToken.idTokenClaims.iat,
+            token: authStore.idToken.idTokenClaims.aud,
+          }
         );
       } catch (err) {
         console.log(err);

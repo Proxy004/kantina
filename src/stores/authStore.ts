@@ -4,8 +4,7 @@ import * as Msal from "@azure/msal-browser";
 import axios from "axios";
 
 export class AuthStore {
-  private accessToken: any = undefined;
-  private idToken: any = undefined;
+  @observable idToken: any = undefined;
   @observable loggedInUser: string = "";
   @observable
   publicClient: Msal.PublicClientApplication = new Msal.PublicClientApplication(
@@ -54,15 +53,21 @@ export class AuthStore {
         if (splittedMail[1] === "hak-bregenz.at") {
           this.setLogIn(true);
           this.loggedInUser = loggedInAccountName;
+          try {
           await axios.post(
             `${`${process.env.REACT_APP_API_URL}/user/loginUser` || ""}`,
             {
               name: this.idToken.idTokenClaims.name,
               email: loggedInAccountName,
+              loginDate: this.idToken.idTokenClaims.iat,
+              token: this.idToken.idTokenClaims.aud,
             },
             { headers: { "Content-Type": "application/json" } }
           );
-
+           } catch (err) {
+            console.log(err);
+          }
+        
           try {
             await axios
               .get(
@@ -75,8 +80,6 @@ export class AuthStore {
           } catch (err) {
             console.log(err);
           }
-        } else {
-          throw new Error("Jesus Christ use your HAK Mail!");
         }
       } catch (err) {
         console.log(err);
@@ -84,50 +87,6 @@ export class AuthStore {
     })();
   }
 
-  @action getAccessToken(request: Msal.SilentRequest) {
-    (async () => {
-      let tokenResponse: Msal.AuthenticationResult;
-      try {
-        tokenResponse = await this.publicClient.acquireTokenSilent(request);
-        this.accessToken = tokenResponse.accessToken;
-      } catch (err) {
-        console.log(err);
-        //PopUp anfordern
-        if (this.requiresInteraction(err))
-          try {
-            tokenResponse = await this.publicClient.acquireTokenPopup(request);
-            this.accessToken = tokenResponse.accessToken;
-          } catch (err) {
-            console.log(err + " accestoken");
-          }
-      }
-    })();
-  }
-
-  /*
-  @action getInfos(request: Msal.SilentRequest) {
-    (async () => {
-      this.getAccessToken(request);
-      const headers = {
-        Accept: "application/json",
-        Authorization: "Bearer " + this.accessToken,
-      };
-      const graphUrl = "https://graph.microsoft.com/v1.0/me/memberOf";
-      const response = await fetch(graphUrl, {
-        method: "GET",
-        headers: headers,
-      });
-      const responseData = await response.json();
-      let groups = responseData.value.map((groupData: any) => {
-        return {
-          name: groupData.displayName ? groupData.displayName : groupData.id,
-        };
-      });
-
-      return groups;
-    })();
-  }
-*/
   requiresInteraction(errorCode: any) {
     if (!errorCode || !errorCode.length) {
       return false;

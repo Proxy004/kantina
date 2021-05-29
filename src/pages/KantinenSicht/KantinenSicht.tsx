@@ -11,6 +11,7 @@ import { inject, observer } from "mobx-react";
 import { toJS } from "mobx";
 import gsap from "gsap";
 import Animation from "./AnimationEmptyAdmin/AnimationOrderCompleted";
+import { authStore } from "../../stores/authStore";
 const KantinenSicht = () => {
   let quantitySum: number = 0;
 
@@ -99,7 +100,10 @@ const KantinenSicht = () => {
                     <FontAwesomeIcon
                       icon={faCheck}
                       onClick={() => {
-                        invoiceStore.setOrderChecked(order.bestellung_id);
+                        invoiceStore.setOrderChecked(
+                          order.bestellung_id,
+                          authStore.loggedInUser
+                        );
                         invoiceStore.deleteOrder(i);
                       }}
                       className={"iconOrderChecked"}
